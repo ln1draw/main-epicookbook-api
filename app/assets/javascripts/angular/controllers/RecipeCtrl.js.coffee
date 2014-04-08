@@ -2,10 +2,10 @@
   "$scope"
   "Restangular"
   ($scope, Restangular) ->
-    getRecipes = Restangular.all("recipes.json")
-    getRecipes.getList().then (someRecipes) ->
-      $scope.recipes = someRecipes
-      return
+    getComponents = Restangular.all('components.json')
+    getComponents.getList().then (someComponents) ->
+      $scope.components = someComponents
+
     getIngredients = Restangular.all("ingredients.json")
     getIngredients.getList().then (someIngredients) ->
       $scope.ingredients = someIngredients

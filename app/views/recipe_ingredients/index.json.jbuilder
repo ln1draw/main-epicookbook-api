@@ -1,1 +1,1 @@
-json.recipe_ingredients @recipe_ingredients
+json.array! @ingredients

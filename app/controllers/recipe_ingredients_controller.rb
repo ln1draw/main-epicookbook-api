@@ -1,5 +1,12 @@
 class RecipeIngredientsController < ApplicationController
+
+  APIurl = 'http://localhost:4000/api/'
+
   def index
-    @recipe_ingredients = HTTParty.get('http://localhost:4000/ingredients')
+    @ingredients = HTTParty.get( APIurl + 'ingredients.json')
+  end
+
+  def components
+    @components = HTTParty.get( APIurl + 'components.json')
   end
 end
