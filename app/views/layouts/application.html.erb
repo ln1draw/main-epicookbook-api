@@ -1,14 +1,31 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='epicookbook'>
 <head>
   <title>MainEpicookbookAPI</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+
+  <!-- UserApp is a user authentication service -->
+  <script src="https://app.userapp.io/js/userapp.client.js"></script>
+  <script src="https://app.userapp.io/js/angularjs.userapp.js"></script>
 </head>
 <body>
-
-<%= yield %>
+<div class='header'>
+    <h1><a href='#'>Epicookbook</a></h1>
+    <div class="ui menu">
+      <a class='item' ng-show="!user.authenticated" href="#/login">log in</a>
+      <a class='item' ng-show="!user.authenticated" href="#/signup">sign up</a>
+      <a class='item' ng-show='user.authenticated' href="#/profile">profile</a>
+      <a class='item' ng-show="user.authenticated" ua-logout href=''>log out</a>
+      <a class='item' ng-show='user.authenticated' href='#/recipe/new'>new recipe</a>
+    </div>
+  </div>
+  
+<div ng-view>
+  <%= yield %>
+</div>
 
 </body>
 </html>

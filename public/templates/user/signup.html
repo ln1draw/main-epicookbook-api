@@ -1,0 +1,29 @@
+<p>Sign up</p>
+<p ng-show="verificationEmailSent">An email has been sent to your inbox. Click on the link to verify your account.</p>
+<form ua-signup class='ui form segment'>
+
+  <div class='field'>
+    <div class='ui left labeled icon input'>
+      <input name="first_name" placeholder="First name">
+      <i class='user icon'></i>
+    </div>
+  </div>
+
+  <div class='field'>
+    <div class='ui left labeled icon input'>
+      <input name="login" placeholder="Email" ua-is-email>
+      <i class='mail icon'></i>
+    </div>
+  </div>
+
+  <div class='field'>  
+    <div class='ui left labeled icon input'>
+      <input name="password" placeholder="Password" type="password">
+      <i class='lock icon'></i>
+    </div>
+  </div>
+
+  <button type="submit" class='ui blue submit button'>Create Account</button>
+  
+  <p ng-show="error">{{ error.message }}</p>
+</form>

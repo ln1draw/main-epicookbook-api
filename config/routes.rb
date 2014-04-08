@@ -1,5 +1,5 @@
 MainEpicookbookAPI::Application.routes.draw do
-  defaults format: :json do 
-    resources :recipes
-  end
+  get "welcome/index"
+  resources :recipes
+  root 'welcome#index'
 end
