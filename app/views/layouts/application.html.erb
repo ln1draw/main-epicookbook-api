@@ -6,7 +6,8 @@
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
 
-
+  <!-- restangular helps AngularJS handle RESTful routes -->
+  <script src='../node_modules/restangular/src/restangular.js'></script>
   <!-- UserApp is a user authentication service -->
   <script src="https://app.userapp.io/js/userapp.client.js"></script>
   <script src="https://app.userapp.io/js/angularjs.userapp.js"></script>
@@ -22,7 +23,7 @@
       <a class='item' ng-show='user.authenticated' href='#/recipe/new'>new recipe</a>
     </div>
   </div>
-  
+
 <div ng-view>
   <%= yield %>
 </div>

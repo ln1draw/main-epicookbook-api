@@ -13,5 +13,6 @@
 //= require jquery
 //= require angular
 //= require angular-route
+//= require lodash
 //= require main
 //= require_tree .
