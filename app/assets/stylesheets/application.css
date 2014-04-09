@@ -11,3 +11,12 @@
  *= require_self
  *= require_tree .
  */
+
+body{
+  width: 80%;
+}
+
+/* Recipe New */
+.ingredient-list li{
+  list-style-type: none;
+}
