@@ -10,4 +10,5 @@
     getIngredients.getList().then (someIngredients) ->
       $scope.ingredients = someIngredients
       return
+
 ]
