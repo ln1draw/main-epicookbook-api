@@ -14,6 +14,7 @@
               <label>{{ingredient.name}}</label>
               <i class="dropdown icon"></i>
             </div>
+            <!-- this is only visible when the user clicks on the ingredient -->
             <ul ng-repeat='component in ingredient.components'>
               <li ng-show='ingredient.notHidden'>{{component.name}}</li>
             </ul>
@@ -22,15 +23,41 @@
     </div>
   </div>
 
-  <div class='column'>
+  <form class='column'>
     <div class='ui segment'>
       <h3>Ingredients</h3>
+
+      <!-- This text is only visible when there are no ingredients selected -->
       <div ng-show='recipeIngredients.length == 0'> Select some ingredients to get started!</div>
+
       <ul ng-repeat='ingredient in recipeIngredients'>
-        <li><input type='text' ng-model='ingredient.quantity' placeholder='amount'> <input type='text' ng-model='ingredient.unit' placeholder='units'> {{ingredient.name}}</li>
+        <li><input type='number' ng-model='ingredient.quantity' placeholder='amount'> <input type='text' ng-model='ingredient.unit' placeholder='units'> {{ingredient.name}}</li>
       </ul>
     </div>
-  </div>
+
+    <div class='ui segment'>
+      <h3>Details</h3>
+      Prep time (in minutes): <input type='number' ng-model='recipe.prep_time'><br>
+      Inactive time (in minutes): <input type='number' ng-model='recipe.inactive_time'><br>
+      Blurb: <input type='textarea' ng-model='recipe.blurb' placeholder="Add a short description of your recipe! e.g. 'My grandma's favorite recipe, these cookies are ooey-gooey good!'">
+    </div>
+
+    <div class='ui segment'>
+      <h3>Steps</h3>
+
+      <!-- step display -->
+      <ol ng-show='steps.length > 0'>
+        <!-- needs to be in a separate div or every number is 1 -->
+        <div ng-repeat='step in steps'>
+          <li>{{step.content}}</li>
+        </div>
+      </ol>
+
+      <!-- writing new steps -->
+      <input type='textarea' placeholder='Add a step!' ng-model='step.content' value='step'/>
+      <i class='add icon' ng-click='addStep(step)' ng-show='step.content.length > 0'></i>
+    </div>
+  </form>
 </div>
 
 {{recipeIngredients}}

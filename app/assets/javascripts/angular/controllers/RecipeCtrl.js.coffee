@@ -6,6 +6,9 @@
     # instantiates the recipeingredients, which will represent the ingredients
     # actually in the recipe
     $scope.recipeIngredients = []
+    $scope.recipe = {}
+    $scope.steps = []
+    $scope.step = ''
 
     # this gets all of the components and saves them to the scope
     getComponents = Restangular.all('components.json')
@@ -43,4 +46,10 @@
       else
         id = ids.indexOf(ingredient.id)
         $scope.recipeIngredients.splice(id, 1)
+
+    # adds a step to the recipe
+    $scope.addStep = (step) ->
+      # this is kind of a hacky fix to the duplicator problem
+      $scope.steps.push {content: step.content, id: $scope.steps.length}
+      $scope.step = ''
 ]
