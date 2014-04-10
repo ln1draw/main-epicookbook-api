@@ -1,6 +1,6 @@
 Search: <input ng-model="query">
 <ul class='ingredient-list'>
-  <li ng-repeat='ingredient in ingredients | filter:query'>
+  <li ng-repeat='ingredient in ingredients.sort() | filter:query'>
       <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
       <div ng-click='show(ingredient)'>
         <label>{{ingredient.name}}</label>
@@ -10,6 +10,10 @@ Search: <input ng-model="query">
         <li ng-show='ingredient.notHidden'>{{component.name}}</li>
       </ul>
   </li>
+</ul>
+
+<ul ng-repeat='ingredient in recipeIngredients'>
+  <li><input type='text' ng-model='ingredient.quantity' placeholder='amount'> <input type='text' ng-model='ingredient.unit' placeholder='units'> {{ingredient.name}}</li>
 </ul>
 
 {{recipeIngredients}}

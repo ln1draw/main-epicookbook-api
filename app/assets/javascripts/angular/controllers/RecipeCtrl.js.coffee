@@ -12,10 +12,16 @@
     getComponents.getList().then (someComponents) ->
       $scope.components = someComponents
 
+    # helper method to sort. Needs refactoring to take case into account
+    compare = (a, b) ->
+      return -1  if a.name.toUpperCase() < b.name.toUpperCase()
+      return 1  if a.name.toUpperCase() > b.name.toUpperCase()
+      0
+
     # this gets all of the ingredients and saves them to the scope
     getIngredients = Restangular.all("ingredients.json")
     getIngredients.getList().then (someIngredients) ->
-      $scope.ingredients = someIngredients
+      $scope.ingredients = someIngredients.sort(compare)
 
     # This toggles view of the components of a particular ingredient
     $scope.show = (ingredient) ->
