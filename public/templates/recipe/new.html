@@ -1,13 +1,15 @@
 Search: <input ng-model="query">
 <ul class='ingredient-list'>
   <li ng-repeat='ingredient in ingredients | filter:query'>
-    <div class='ui dropdown'>
-      <input type='checkbox' ng-model="ingredient.notHidden" name='ingredient.name'/>
-      <label>{{ingredient.name}}</label>
-      <i class='dropdown icon'></i>
+      <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
+      <div ng-click='show(ingredient)'>
+        <label>{{ingredient.name}}</label>
+        <i class="dropdown icon"></i>
+      </div>
       <ul ng-repeat='component in ingredient.components'>
         <li ng-show='ingredient.notHidden'>{{component.name}}</li>
       </ul>
-    </div>
   </li>
 </ul>
+
+{{recipeIngredients}}
