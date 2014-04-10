@@ -1,19 +1,37 @@
-Search: <input ng-model="query">
-<ul class='ingredient-list'>
-  <li ng-repeat='ingredient in ingredients.sort() | filter:query'>
-      <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
-      <div ng-click='show(ingredient)'>
-        <label>{{ingredient.name}}</label>
-        <i class="dropdown icon"></i>
-      </div>
-      <ul ng-repeat='component in ingredient.components'>
-        <li ng-show='ingredient.notHidden'>{{component.name}}</li>
-      </ul>
-  </li>
-</ul>
+<h2>New Recipe</h2>
 
-<ul ng-repeat='ingredient in recipeIngredients'>
-  <li><input type='text' ng-model='ingredient.quantity' placeholder='amount'> <input type='text' ng-model='ingredient.unit' placeholder='units'> {{ingredient.name}}</li>
-</ul>
+<div class='two column stackable ui grid'>
+  <div class='column'>
+    <div class='ui segment'>
+      Search: <input ng-model="query">
+    </div>
+
+    <div class='ui segment'>
+      <ul class='ingredient-list'>
+        <li ng-repeat='ingredient in ingredients.sort() | filter:query'>
+            <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
+            <div ng-click='show(ingredient)'>
+              <label>{{ingredient.name}}</label>
+              <i class="dropdown icon"></i>
+            </div>
+            <ul ng-repeat='component in ingredient.components'>
+              <li ng-show='ingredient.notHidden'>{{component.name}}</li>
+            </ul>
+        </li>
+      </ul>
+    </div>
+  </div>
+
+  <div class='column'>
+    <div class='ui segment'>
+      <h3>Ingredients</h3>
+      <div ng-show='recipeIngredients.length == 0'> Select some ingredients to get started!</div>
+      <ul ng-repeat='ingredient in recipeIngredients'>
+        <li><input type='text' ng-model='ingredient.quantity' placeholder='amount'> <input type='text' ng-model='ingredient.unit' placeholder='units'> {{ingredient.name}}</li>
+      </ul>
+    </div>
+  </div>
+</div>
 
 {{recipeIngredients}}
+
