@@ -52,4 +52,9 @@
       # this is kind of a hacky fix to the duplicator problem
       $scope.steps.push {content: step.content, id: $scope.steps.length}
       $scope.step = ''
+
+    # creates a new recipe
+    $scope.createRecipe = (recipe, recipeIngredients, steps) ->
+      recipeAddress = Restangular.all('recipes.json')
+      recipeAddress.post(name: recipe.name blurb: recipe.blurb, image: recipe.image, prep_time: recipe.prep_time, inactive_time: recipe.inactive_time, makes: recipe.makes)
 ]

@@ -37,9 +37,11 @@
 
     <div class='ui segment'>
       <h3>Details</h3>
+      Title: <input type='text' ng-model='recipe.name' placeholder='Whatcha making?'><br>
       Prep time (in minutes): <input type='number' ng-model='recipe.prep_time'><br>
       Inactive time (in minutes): <input type='number' ng-model='recipe.inactive_time'><br>
-      Blurb: <input type='textarea' ng-model='recipe.blurb' placeholder="Add a short description of your recipe! e.g. 'My grandma's favorite recipe, these cookies are ooey-gooey good!'">
+      Blurb: <input type='textarea' ng-model='recipe.blurb' placeholder="Add a short description of your recipe! e.g. 'My grandma's favorite recipe, these cookies are ooey-gooey good!'"><br>
+      Image: <input type='file' ng-model='recipe.image' >
     </div>
 
     <div class='ui segment'>
@@ -48,7 +50,7 @@
       <!-- step display -->
       <ol ng-show='steps.length > 0'>
         <!-- needs to be in a separate div or every number is 1 -->
-        <div ng-repeat='step in steps'>
+        <div ng-repeat='step in steps' ng-model='recipe.steps'>
           <li>{{step.content}}</li>
         </div>
       </ol>
@@ -57,8 +59,9 @@
       <input type='textarea' placeholder='Add a step!' ng-model='step.content' value='step'/>
       <i class='add icon' ng-click='addStep(step)' ng-show='step.content.length > 0'></i>
     </div>
+
+    <div class='ui segment'>
+      <button ng-click='createRecipe(recipe, recipeIngredients, steps)'>Submit</button>
+    </div>
   </form>
 </div>
-
-{{recipeIngredients}}
-

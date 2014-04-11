@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app='epicookbook'>
 <head>
-  <title>MainEpicookbookAPI</title>
+  <title>Epicookbook</title>
   <%= stylesheet_link_tag    "application", media: "all" %>
   <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
@@ -24,7 +24,7 @@
     </div>
   </div>
 
-<div ng-view>
+<div ng-view class='content'>
   <%= yield %>
 </div>
 
