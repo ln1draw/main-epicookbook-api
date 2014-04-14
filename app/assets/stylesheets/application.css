@@ -23,9 +23,8 @@ body{
   margin: auto;
 }
 
-.header{
-  background-color: #5E9CA0;
-  height: 100px;
+.header img{
+  width: 100%;
 }
 
 /* Recipe New */

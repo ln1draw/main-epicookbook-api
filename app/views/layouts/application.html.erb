@@ -14,13 +14,14 @@
 </head>
 <body>
 <div class='header'>
-    <h1><a href='#'>Epicookbook</a></h1>
+    <%= link_to(image_tag('logo2.jpg', alt: "logo", title: "Welcome", class: 'header-pic'),"/") %>
     <div class="ui menu">
       <a class='item' ng-show="!user.authenticated" href="#/login">log in</a>
       <a class='item' ng-show="!user.authenticated" href="#/signup">sign up</a>
       <a class='item' ng-show='user.authenticated' href="#/profile">profile</a>
       <a class='item' ng-show="user.authenticated" ua-logout href=''>log out</a>
       <a class='item' ng-show='user.authenticated' href='#/recipe/new'>new recipe</a>
+      <a class='item' href='#/recipes'>all recipes</a>
     </div>
   </div>
 

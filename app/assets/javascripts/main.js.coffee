@@ -46,6 +46,11 @@ epicookbook.config([
       controller: "RecipeCtrl"
     )
 
+    .when("/recipes",
+      templateUrl: "../templates/recipe/index.html"
+      controller: "RecipesCtrl"
+    )
+
     .otherwise templateUrl: "../templates/home.html"
 ])
 
