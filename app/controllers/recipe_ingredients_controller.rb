@@ -19,14 +19,14 @@ class RecipeIngredientsController < ApplicationController
   end
 
   def create
+    @recipe_ingredients = []
     params[:recipe_ingredients].each do |ri|
-      RecipeIngredient.create(
+      @recipe_ingredients << RecipeIngredient.create(
         unit: ri[:unit],
         quantity: ri[:quantity],
         ingredient_id: ri[:id],
         recipe_id: params[:recipe_id]
       )
     end
-    redirect_to 'index'
   end
 end

@@ -1,11 +1,11 @@
 class DirectionsController < ApplicationController
   def create
+    @directions = []
     params[:steps].each do |step|
-      Direction.create(
+      @directions << Direction.create(
         content: step[:content],
         recipe_id: params[:recipe_id]
       )
     end
-    redirect_to 'index'
   end
 end
