@@ -56,6 +56,14 @@
     # creates a new recipe
     $scope.createRecipe = (recipe, recipeIngredients, steps) ->
       recipeAddress = Restangular.all('recipes.json')
+      recipeIngredientAddress = Restangular.all('ingredients.json')
+      recipeSteps = Restangular.all('steps.json')
+
       theRecipe = {blurb: recipe.blurb, image: recipe.image, name: recipe.name, prep_time: recipe.prep_time, inactive_time: recipe.inactive_time, makes: recipe.makes}
-      recipeAddress.post(theRecipe, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"} )
+      
+      recipeAddress.post(theRecipe, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"} ).then (recipe) ->
+        theIngredients = {recipe_ingredients: recipeIngredients, recipe_id: recipe.id}
+        recipeIngredientAddress.post(theIngredients, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"})
+        theSteps = {steps: steps, recipe_id: recipe.id}
+        recipeSteps.post(theSteps, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"})
 ]
