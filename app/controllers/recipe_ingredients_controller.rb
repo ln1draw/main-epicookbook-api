@@ -29,4 +29,14 @@ class RecipeIngredientsController < ApplicationController
       )
     end
   end
+
+  def new_ingredient
+    pi = params[:ingredient]
+    to_post = {ingredient: {
+      name: pi[:name],
+      verified: false,
+      components: pi[:components]
+      }}
+    @ingredient = HTTParty.post( APIurl + 'ingredients.json', to_post)
+  end
 end

@@ -3,12 +3,14 @@
 @epicookbook = angular.module('epicookbook', [
   'ngRoute',
   'UserApp',
-  'restangular'
+  'restangular',
   ])
 
 epicookbook.config([
-  "$routeProvider"
-  ($routeProvider) ->
+  "$routeProvider",
+  "$locationProvider",
+  ($routeProvider, $locationProvider) ->
+    
     $routeProvider
 
     .when("/login",
@@ -43,12 +45,17 @@ epicookbook.config([
 
     .when("/recipe/new",
       templateUrl: "../templates/recipe/new.html"
-      controller: "RecipeCtrl"
+      controller: "NewRecipeCtrl"
     )
 
     .when("/recipes",
       templateUrl: "../templates/recipe/index.html"
       controller: "RecipesCtrl"
+    )
+
+    .when("/recipe/:recipeId",
+      templateUrl: "../templates/recipe/show.html"
+      controller: "RecipeCtrl"
     )
 
     .otherwise templateUrl: "../templates/home.html"
