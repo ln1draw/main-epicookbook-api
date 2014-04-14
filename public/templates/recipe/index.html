@@ -1,0 +1,9 @@
+<div class='ui segment'>
+      <ul class='recipe-list'>
+        <li ng-repeat='recipe in recipes.sort() | filter:query'>
+          <input type='checkbox' name='recipe.name' ng-click='addrecipe(recipe)'/>
+          {{recipe.name}}<br>
+          {{recipe.blurb}}
+        </li>
+      </ul>
+    </div>

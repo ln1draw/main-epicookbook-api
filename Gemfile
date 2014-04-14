@@ -57,6 +57,12 @@ gem 'semantic-ui-rails'
 gem 'lodash-rails'
 
 gem 'httparty'
+
+gem 'carrierwave'
+gem 'fog'
+gem 'figaro'
+gem 'mini_magick'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt-ruby', '~> 3.1.2'
 

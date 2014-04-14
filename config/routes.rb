@@ -1,6 +1,9 @@
 MainEpicookbookAPI::Application.routes.draw do
-  get 'ingredients' => 'recipe_ingredients#index'
-  get 'components' => 'recipe_ingredients#components'
+  get  'ingredients' => 'recipe_ingredients#ingredients'
+  get  'index'       => 'recipe_ingredients#index'
+  post 'ingredients' => 'recipe_ingredients#create'
+  get  'components'  => 'recipe_ingredients#components'
+  post 'steps'       => 'directions#create'
   resources :recipes
-  root 'welcome#index'
+  root  'welcome#index'
 end
