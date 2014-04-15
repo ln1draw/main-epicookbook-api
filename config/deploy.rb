@@ -3,7 +3,7 @@ lock '3.1.0'
 
 set :application, 'epicookbook'
 set :repo_url, 'git@github.com:shanghaiellen/main-epicookbook-api.git'
-set :use_sudo, true
+set :use_sudo, false
 
 set deploy_to, '/var/www/epicookbook'
 
