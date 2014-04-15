@@ -5,7 +5,7 @@ set :application, 'epicookbook'
 set :repo_url, 'git@github.com:shanghaiellen/main-epicookbook-api.git'
 set :use_sudo, false
 
-set deploy_to, '/var/www/epicookbook'
+set :deploy_to, '/var/www/epicookbook'
 
 # Default branch is :master
 # ask :branch, proc { `git rev-parse --abbrev-ref HEAD`.chomp }
