@@ -85,14 +85,14 @@
       newIngredient.post(theIngredient, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"})
 
     # creates a new recipe
-    $scope.createRecipe = (recipe, recipeIngredients, steps) ->
+    $scope.createRecipe = (recipe, recipeIngredients, steps, uid) ->
       # sets all of the URLs to be called in the API
       recipeAddress = Restangular.all('recipes.json')
       recipeIngredientAddress = Restangular.all('ingredients.json')
       recipeSteps = Restangular.all('steps.json')
 
       # sets values to be passed for the new recipe
-      theRecipe = {blurb: recipe.blurb, image: recipe.image, name: recipe.name, prep_time: recipe.prep_time, inactive_time: recipe.inactive_time, makes: recipe.makes}
+      theRecipe = {uid: uid, blurb: recipe.blurb, image: recipe.image, name: recipe.name, prep_time: recipe.prep_time, inactive_time: recipe.inactive_time, makes: recipe.makes}
       
       # creates a new recipe via an API call and creates a promise object
       recipeAddress.post(theRecipe, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"} ).then (recipe) ->

@@ -21,6 +21,8 @@
       <a class='item' ng-show="!user.authenticated" href="#/signup">sign up</a>
       <a class='item' ng-show='user.authenticated' href="#/profile">profile</a>
       <a class='item' ng-show="user.authenticated" ua-logout href=''>log out</a>
+<!--       <a class='item' ng-show="user.authenticated" href='#/filter'>manage filters</a> -->
+<a class='item' ng-show="user.authenticated" href='#/filter/new'>new filter</a>
       <a class='item' ng-show='user.authenticated' href='#/recipe/new'>new recipe</a>
       <a class='item' href='#/recipes'>all recipes</a>
     </div>

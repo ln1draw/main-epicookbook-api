@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140403174448) do
+ActiveRecord::Schema.define(version: 20140414224216) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -35,7 +35,6 @@ ActiveRecord::Schema.define(version: 20140403174448) do
   create_table "recipes", force: true do |t|
     t.string   "blurb"
     t.string   "image"
-    t.integer  "user_id"
     t.integer  "prep_time"
     t.integer  "inactive_time"
     t.datetime "created_at"
@@ -43,6 +42,7 @@ ActiveRecord::Schema.define(version: 20140403174448) do
     t.string   "makes"
     t.boolean  "verified"
     t.string   "name"
+    t.string   "uid"
   end
 
 end

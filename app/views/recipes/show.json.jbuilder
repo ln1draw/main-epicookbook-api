@@ -1,3 +1,3 @@
 json.extract! @recipe, :id, :name, 
-  :verified, :blurb, :image, :user_id, 
+  :verified, :blurb, :image, :uid, 
   :prep_time, :inactive_time

@@ -1,20 +1,27 @@
-{{recipe}}<br><br><br>
-some ingredients: 
-{{ingredients}}
+{{ingredients}}<br><br>
 
 <h2>{{recipe.name}}</h2>
 <h3 ng-bind-html-unsafe='verified' ng-style='verifiedStyle'></h3>
 <div class='two column stackable ui grid'>
   <div class='column'>
-    <div class='ui segment'>Created by user number {{recipe.user_id}}</div>
     <div class='ui segment'>{{recipe.blurb}}</div>
-  </div>
-
-  <div class='column'>
     <div class='ui segment'><img src={{recipe.image.url}}></img></div>
     <div class='ui segment'>
       Prep time: {{recipe.prep_time}} minutes<br>
       Inactive time: {{recipe.inactive_time}} minutes
+    </div>
+  </div>
+
+  <div class='column'>
+    <div class='ui segment'>
+      <ul ng-repeat='ingredient in ingredients'>
+        <li>{{ingredient.quantity}} {{ingredient.unit}} {{ingredient.name}}</li>
+      </ul>
+    </div>
+    <div class='ui segment'>
+      <ol ng-repeat='step in steps'>
+        <li>{{step.content}}</li>
+      </ol>
     </div>
   </div>
 </div>
