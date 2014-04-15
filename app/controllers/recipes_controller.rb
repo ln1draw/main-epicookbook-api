@@ -30,9 +30,17 @@ class RecipesController < ApplicationController
     head :no_content
   end
 
+  def ingredients
+    @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id].to_i)
+    @ingredients = []
+    @recipe_ingredients.each do |recipe_ingredient|
+      ingredients << HTTParty.get( APIurl + 'ingredients/' + recipe_ingredient.id)
+    end
+  end
+
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :verified, :blurb, :image, :user_id, :prep_time, :inactive_time, :recipe_ingredients => {}, :directions => {})
+    params.require(:recipe).permit(:name, :id, :verified, :blurb, :image, :user_id, :prep_time, :inactive_time, :recipe_ingredients => {}, :directions => {})
   end
 
   def set_recipe

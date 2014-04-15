@@ -3,24 +3,54 @@
 <div class='two column stackable ui grid'>
   <div class='column'>
     <div class='ui segment'>
-      Search: <input ng-model="query">
+      Search for an Ingredient: <input ng-model="query">
+      <button ng-click='newIngredient()' ng-show='!createIngredient'>Add a new ingredient</button>
+      <button ng-click='newIngredient()' ng-show='createIngredient'>Undo new ingredient</button>
     </div>
 
-    <div class='ui segment'>
-      <ul class='ingredient-list'>
-        <li ng-repeat='ingredient in ingredients.sort() | filter:query'>
-            <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
-            <div ng-click='show(ingredient)'>
-              <label>{{ingredient.name}}</label>
-              <i class="dropdown icon"></i>
-            </div>
-            <!-- this is only visible when the user clicks on the ingredient -->
-            <ul ng-repeat='component in ingredient.components'>
-              <li ng-show='ingredient.notHidden'>{{component.name}}</li>
+    <!-- Begin the new ingredient section -->
+    <div class='ui segment' ng-show='createIngredient'>
+      What does your ingredient contain?: <input ng-model="componentQuery">
+      <div class='two column stackable ui grid'>
+        <div class='column'>
+          <input type='textarea' ng-model='newIngredientName' placeholder='Name your ingredient!' class='ui segment'></input> 
+          <ul class='ui segment'>
+            <li ng-repeat='component in components.sort() | filter: componentQuery'>
+              <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>
+              <label>{{component.name}}</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class='column'>
+          <div class='ui segment'>
+            <div ng-show='newIngredients.length == 0'> Select some components to get started!</div>
+
+            <ul ng-repeat='component in newIngredients'>
+              <li>{{component.name}}</li>
             </ul>
-        </li>
-      </ul>
+          </div>
+
+          <div class='ui segment'>
+            <button ng-click='createIngredient(newIngredients, newIngredientName)'>Create!</button>
+          </div>
+        </div>
+      </div>
     </div>
+    <!-- end new ingredient section -->
+
+    <ul class='ui segment'>
+      <li class='ingredient-list' ng-repeat='ingredient in ingredients.sort() | filter:query'>
+        <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
+        <span ng-click='show(ingredient)'>
+          <label>{{ingredient.name}}<i class="dropdown icon"></i></label>
+        </span>
+        <!-- this is only visible when the user clicks on the ingredient -->
+        <ul ng-repeat='component in ingredient.components'>
+          <li ng-show='ingredient.notHidden'>{{component.name}}</li>
+        </ul>
+      </li>
+    </ul>
   </div>
 
   <form class='column'>
@@ -34,8 +64,6 @@
         <li><input type='number' ng-model='ingredient.quantity' placeholder='amount'> <input type='text' ng-model='ingredient.unit' placeholder='units'> {{ingredient.name}}</li>
       </ul>
     </div>
-
-    {{recipeIngredients}}
 
     <div class='ui segment'>
       <h3>Details</h3>
