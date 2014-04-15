@@ -33,6 +33,10 @@ end
 group :development do
   gem "better_errors" # These two are just for debugging
   gem "binding_of_caller"
+  gem 'capistrano'
+  gem 'capistrano-rvm'
+  gem 'capistrano-bundler'
+  gem 'capistrano-rails'
 end
 
 group :doc do

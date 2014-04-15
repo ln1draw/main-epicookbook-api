@@ -16,6 +16,7 @@ body{
   width: 80%;
   background-color: #e2DA99;
   margin: auto;
+  font-family: 'Radley', serif;
 }
 
 .content{
@@ -30,4 +31,16 @@ body{
 /* Recipe New */
 .ingredient-list li{
   list-style-type: none;
+}
+
+ul li{
+  list-style-type: none;
+}
+
+.recipe{
+  width: 100%;
+}
+
+.recipe a{
+  width: 100%;
 }

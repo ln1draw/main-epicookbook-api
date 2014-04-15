@@ -84,6 +84,12 @@
       theIngredient = {ingredient: {name: newIngredientName, components: newIngredients}}
       newIngredient.post(theIngredient, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"})
 
+    $scope.valid = (recipeName, recipeIngredients, steps) ->
+      if recipeName.length > 0 and recipe_ingredients.length > 0 and steps.length > 0 and recipe.length != null
+        return true
+      else
+        return false
+
     # creates a new recipe
     $scope.createRecipe = (recipe, recipeIngredients, steps, uid) ->
       # sets all of the URLs to be called in the API
