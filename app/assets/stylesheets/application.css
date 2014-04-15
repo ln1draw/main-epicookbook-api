@@ -11,3 +11,36 @@
  *= require_self
  *= require_tree .
  */
+
+body{
+  width: 80%;
+  background-color: #e2DA99;
+  margin: auto;
+  font-family: 'Radley', serif;
+}
+
+.content{
+  width: 100%;
+  margin: auto;
+}
+
+.header img{
+  width: 100%;
+}
+
+/* Recipe New */
+.ingredient-list li{
+  list-style-type: none;
+}
+
+ul li{
+  list-style-type: none;
+}
+
+.recipe{
+  width: 100%;
+}
+
+.recipe a{
+  width: 100%;
+}

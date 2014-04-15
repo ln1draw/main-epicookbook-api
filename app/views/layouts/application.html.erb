@@ -1,14 +1,37 @@
 <!DOCTYPE html>
-<html>
+<html ng-app='epicookbook'>
 <head>
-  <title>MainEpicookbookAPI</title>
-  <%= stylesheet_link_tag    "application", media: "all", "data-turbolinks-track" => true %>
-  <%= javascript_include_tag "application", "data-turbolinks-track" => true %>
+  <title>Epicookbook</title>
+  <%= stylesheet_link_tag    "application", media: "all" %>
+  <%= javascript_include_tag "application" %>
   <%= csrf_meta_tags %>
+
+  <!-- restangular helps AngularJS handle RESTful routes -->
+  <script src='../node_modules/restangular/src/restangular.js'></script>
+  <!-- UserApp is a user authentication service -->
+  <script src="https://app.userapp.io/js/userapp.client.js"></script>
+  <script src="https://app.userapp.io/js/angularjs.userapp.js"></script>
+  <link href='http://fonts.googleapis.com/css?family=Nunito|Radley' rel='stylesheet' type='text/css'>
+  <base href="/#/"></base>
 </head>
 <body>
+<div class='header'>
+    <%= link_to(image_tag('logo2.jpg', alt: "logo", title: "Welcome", class: 'header-pic'),"/") %>
+    <div class="ui menu">
+      <a class='item' ng-show="!user.authenticated" href="#/login">log in</a>
+      <a class='item' ng-show="!user.authenticated" href="#/signup">sign up</a>
+      <a class='item' ng-show='user.authenticated' href="#/profile">profile</a>
+      <a class='item' ng-show="user.authenticated" ua-logout href=''>log out</a>
+<!--       <a class='item' ng-show="user.authenticated" href='#/filter'>manage filters</a> -->
+<a class='item' ng-show="user.authenticated" href='#/filter/new'>new filter</a>
+      <a class='item' ng-show='user.authenticated' href='#/recipe/new'>new recipe</a>
+      <a class='item' href='#/recipes'>all recipes</a>
+    </div>
+  </div>
 
-<%= yield %>
+<div ng-view class='content'>
+  <%= yield %>
+</div>
 
 </body>
 </html>

@@ -1,0 +1,104 @@
+<h2>New Recipe</h2>
+
+<div class='two column stackable ui grid'>
+  <div class='column'>
+    <div class='ui segment'>
+      Search for an Ingredient: <input ng-model="query">
+      <button ng-click='newIngredient()' ng-show='!createIngredient'>Add a new ingredient</button>
+      <button ng-click='newIngredient()' ng-show='createIngredient'>Undo new ingredient</button>
+    </div>
+
+    <!-- Begin the new ingredient section -->
+    <div class='ui segment' ng-show='createIngredient'>
+      What does your ingredient contain?: <input ng-model="componentQuery">
+      <div class='two column stackable ui grid'>
+        <div class='column'>
+          <input type='textarea' ng-model='newIngredientName' placeholder='Name your ingredient!' class='ui segment'></input> 
+          <ul class='ui segment'>
+            <li ng-repeat='component in components.sort() | filter: componentQuery'>
+              <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>
+              <label>{{component.name}}</label>
+            </li>
+          </ul>
+        </div>
+
+        <div class='column'>
+          <div class='ui segment'>
+            <div ng-show='newIngredients.length == 0'> Select some components to get started!</div>
+
+            <ul ng-repeat='component in newIngredients'>
+              <li>{{component.name}}</li>
+            </ul>
+          </div>
+
+          <div class='ui segment'>
+            <button ng-click='createIngredient(newIngredients, newIngredientName)'>Create!</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- end new ingredient section -->
+
+    <ul class='ui segment'>
+      <li class='ingredient-list' ng-repeat='ingredient in ingredients.sort() | filter:query'>
+        <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
+        <span ng-click='show(ingredient)'>
+          <label>{{ingredient.name}}<i class="dropdown icon"></i></label>
+        </span>
+        <!-- this is only visible when the user clicks on the ingredient -->
+        <ul ng-repeat='component in ingredient.components'>
+          <li ng-show='ingredient.notHidden'>{{component.name}}</li>
+        </ul>
+      </li>
+    </ul>
+  </div>
+
+  <form class='column'>
+    <div class='ui segment'>
+      <h3>Ingredients</h3>
+
+      <!-- This text is only visible when there are no ingredients selected -->
+      <div ng-show='recipeIngredients.length == 0'> Select some ingredients to get started!</div>
+
+      <ul ng-repeat='ingredient in recipeIngredients'>
+        <li><input type='number' ng-model='ingredient.quantity' placeholder='amount'> <input type='text' ng-model='ingredient.unit' placeholder='units'> {{ingredient.name}}</li>
+      </ul>
+    </div>
+
+    <div class='ui segment'>
+      <h3>Details</h3>
+      Name: <input type='textarea' ng-model='recipe.name'><br>
+      Prep time (in minutes): <input type='number' ng-model='recipe.prep_time'><br>
+      Inactive time (in minutes): <input type='number' ng-model='recipe.inactive_time'><br>
+      Blurb: <input type='textarea' ng-model='recipe.blurb' placeholder="Add a short description of your recipe! e.g. 'My grandma's favorite recipe, these cookies are ooey-gooey good!'"><br>
+      Image: <input type='file' ng-model='recipe.image' >
+    </div>
+
+    <div class='ui segment'>
+      <h3>Steps</h3>
+
+      <!-- step display -->
+      <ol ng-show='steps.length > 0'>
+        <!-- needs to be in a separate div or every number is 1 -->
+        <div ng-repeat='step in steps' ng-model='recipe.steps'>
+          <li>{{step.content}}</li>
+        </div>
+      </ol>
+
+      <!-- writing new steps -->
+      <input type='textarea' placeholder='Add a step!' ng-model='step.content' value='step'/>
+      <i class='add icon' ng-click='addStep(step)' ng-show='step.content.length > 0'></i>
+    </div>
+
+    <div class='ui segment'>
+      <div class='validations'>
+        <div ng-show='recipe.name == null'>* A recipe name is required</div>
+        <!-- clearly not DRY, but it works for now -->
+        <div ng-show='recipe.name.length == 0'>* A recipe name is required</div>
+        <div ng-show='recipeIngredients.length < 1'>* The recipe must include ingredients</div>
+        <div ng-show='steps.length < 1'>* The recipe must include steps</div>
+      </div>
+      <button ng-disabled='valid(recipe.name, recipeIngredients, steps)' ng-click='createRecipe(recipe, recipeIngredients, steps, user.user_id)'>Submit</button>
+    </div>
+  </form>
+</div>

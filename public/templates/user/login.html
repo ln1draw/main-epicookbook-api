@@ -1,0 +1,23 @@
+<p>Please log in</p>
+<form ua-login class='ui form segment'>
+  <div class='field'>
+    <div class='ui left labeled icon input'>
+      <input name="login" placeholder="Email address" type='text'>
+      <i class='user icon'></i><br>
+    </div>
+  </div>
+
+  <div class='field'>
+    <div class='ui left labeled icon input'>
+      <input name="password" placeholder="Password" type="password"><br>
+      <i class='lock icon'></i>
+    </div>
+  </div>
+
+  <button class='ui blue submit button'>Log In</button>
+  
+  <p ng-show="error">{{ error.message }}</p>
+</form>
+
+<a href="#/signup">Sign up</a><br>
+<a href='#/reset-password'>Forgot your password?</a>
