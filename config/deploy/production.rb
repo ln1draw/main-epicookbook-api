@@ -14,13 +14,13 @@ role :db,  %w{ubuntu@ec2-54-187-57-9.us-west-2.compute.amazonaws.com}
 # definition into the server list. The second argument
 # something that quacks like a hash can be used to set
 # extended properties on the server.
-server 'epicookbook.com', user: 'ubuntu', roles: %w{web app}, my_property: :my_value
+server 'ec2-54-187-57-9.us-west-2.compute.amazonaws.com', user: 'ubuntu', roles: %w{web app}, my_property: :my_value
 
 server 'ec2-54-187-57-9.us-west-2.compute.amazonaws.com',
   user: 'ubuntu',
   roles: %w(web app),
   ssh_options: {
-    keys: %w(/Documents/ada_homework/in_progress/keypair/whatsinmyfood.pem),
+    keys: %w(/Users/Ellen/Documents/ada_homework/in_progress/keypair/whatsinmyfood.pem),
     forward_agent: false,
     auth_methods: %w(publickey)
   }

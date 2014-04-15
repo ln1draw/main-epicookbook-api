@@ -46,10 +46,6 @@ end
 
 gem 'rack-cors'
 
-group :assets do
-  gem 'angularjs-rails'
-end
-
 # I know this is repetitive, but redundant listings appear to solve some problems
 gem 'angularjs-rails'
 
