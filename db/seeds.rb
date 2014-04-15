@@ -22,7 +22,7 @@ Recipe.create([
   {
     blurb: "The tastiest non-dairy ice cream you'll ever nom", 
     image: "http://www.placekitten.com/50/50",
-    user_id: 1,
+    uid: 1,
     prep_time: 5,
     inactive_time: 600,
     makes: '4 servings',

@@ -6,8 +6,11 @@
   ($scope, Restangular, $routeParams) ->
     $scope.recipeId = $routeParams.recipeId
 
-    getIngredients = Restangular.all('recipes/' + $scope.recipeId + '/ingredients.json').getList().then (theIngredients) ->
+    getIngredients = Restangular.one('recipes/' + $scope.recipeId + '/ingredients.json').get().then (theIngredients) ->
       $scope.ingredients = theIngredients
+
+    getSteps = Restangular.one('recipes/' + $scope.recipeId + '/steps.json').getList().then (theSteps) ->
+      $scope.steps = theSteps
     
     # begins the promise object that relies on details from the recipe
     # everything that relies on the recipe is inside this block

@@ -5,7 +5,8 @@ MainEpicookbookAPI::Application.routes.draw do
   get  'components'              => 'recipe_ingredients#components'
   post 'steps'                   => 'directions#create'
   get  'recipes/:id/ingredients' => 'recipes#ingredients'
-  post 'ingredient'             => 'recipe_ingredients#new_ingredient'
+  post 'ingredient'              => 'recipe_ingredients#new_ingredient'
+  get  'recipes/:id/steps'       => 'recipes#directions'
 
   resources :recipes
   root  'welcome#index'

@@ -1,6 +1,8 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :update, :destroy]
 
+  APIurl = 'http://localhost:4000/api/'
+
   def index
     @recipes = Recipe.all
   end
@@ -31,16 +33,22 @@ class RecipesController < ApplicationController
   end
 
   def ingredients
-    @recipe_ingredients = RecipeIngredient.where(recipe_id: params[:id].to_i)
+    id = params[:id].to_i
+    @recipe_ingredients = RecipeIngredient.where(recipe_id: id)
     @ingredients = []
     @recipe_ingredients.each do |recipe_ingredient|
-      ingredients << HTTParty.get( APIurl + 'ingredients/' + recipe_ingredient.id)
+      @ingredients << HTTParty.get( APIurl + 'ingredients/' + recipe_ingredient.ingredient_id.to_s)
     end
+  end
+
+  def directions
+    id = params[:id].to_i
+    @directions = Direction.where(recipe_id: id)
   end
 
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :id, :verified, :blurb, :image, :user_id, :prep_time, :inactive_time, :recipe_ingredients => {}, :directions => {})
+    params.require(:recipe).permit(:name, :id, :verified, :blurb, :image, :uid, :prep_time, :inactive_time, :recipe_ingredients => {}, :directions => {})
   end
 
   def set_recipe

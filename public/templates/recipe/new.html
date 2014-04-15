@@ -91,7 +91,14 @@
     </div>
 
     <div class='ui segment'>
-      <button ng-click='createRecipe(recipe, recipeIngredients, steps)'>Submit</button>
+      <div class='validations'>
+        <div ng-show='recipe.name == null'>* A recipe name is required</div>
+        <!-- clearly not DRY, but it works for now -->
+        <div ng-show='recipe.name.length == 0'>* A recipe name is required</div>
+        <div ng-show='recipeIngredients.length < 1'>* The recipe must include ingredients</div>
+        <div ng-show='steps.length < 1'>* The recipe must include steps</div>
+      </div>
+      <button ng-disabled='valid(recipe.name, recipeIngredients, steps)' ng-click='createRecipe(recipe, recipeIngredients, steps, user.user_id)'>Submit</button>
     </div>
   </form>
 </div>

@@ -5,7 +5,7 @@ FactoryGirl.define do
     makes "An amount"
     blurb "What a cool recipe"
     image "MyString"
-    user_id 1
+    uid 1
     prep_time 1
     inactive_time 1
   end
