@@ -14,6 +14,7 @@
     $scope.newIngredients = []
     $scope.newIngredientName = ''
     $scope.creatingIngredient = false
+    $scope.creatingComponent = false
 
     # this gets all of the components and saves them to the scope
     getComponents = Restangular.all('components.json')
@@ -83,8 +84,18 @@
     $scope.createIngredient = (newIngredients, newIngredientName) ->
       newIngredient = Restangular.all('ingredient.json')
       theIngredient = {name: newIngredientName, components: newIngredients}
-      newIngredient.post(theIngredient, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"})
+      newIngredient.post(theIngredient, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"}).then (recipe) ->
+        getIngredients.getList().then (someIngredients) ->
+          $scope.ingredients = someIngredients.sort(compare)
 
+    # makes the new component form available
+    $scope.newComponent = ->
+      if $scope.creatingComponent
+        $scope.creatingComponent = false
+      else
+        $scope.creatingComponent = true
+
+    # client-side validity checks
     $scope.valid = (recipeName, recipeIngredients, steps) ->
       if recipeName.length > 0 and recipe_ingredients.length > 0 and steps.length > 0 and recipe.length != null
         return true

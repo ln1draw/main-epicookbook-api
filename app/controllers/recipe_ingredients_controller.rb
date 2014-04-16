@@ -31,11 +31,17 @@ class RecipeIngredientsController < ApplicationController
   end
 
   def new_ingredient
+    components = []
+    params[:components].each do |component|
+      components << component[:id]
+    end
     to_post = {ingredient: {
       name: params[:name],
       verified: false,
-      components: params[:components]
+      components: components
       }}
-    @ingredient = HTTParty.post( APIurl + 'ingredients.json', to_post)
+    @ingredient = HTTParty.post( APIurl + 'ingredients.json', 
+                                  body: to_post.to_json, 
+                                  headers: {'Content-Type' => 'application/json'})
   end
 end

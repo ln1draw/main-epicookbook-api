@@ -11,7 +11,18 @@
     <!-- Begin the new ingredient section -->
     <div class='ui segment' ng-show='creatingIngredient'>
       <input type='textarea' ng-model='newIngredientName' placeholder='Name your ingredient!' class='ui segment'></input> {{newIngredientName}}<br>
-      What does your ingredient contain?: <input ng-model="componentQuery">
+      What is your ingredient made out of?: <input ng-model="componentQuery" placeholder='Search for a component'><br>
+
+      <!-- Begins new component section -->
+      <small>I don't see what I need! <button ng-click='newComponent()' ng-show='!creatingComponent'>Add a new component</button>
+      <button ng-click='newComponent()' ng-show='creatingComponent'>Undo new component</button></small>
+
+      <form novalidate ng-show='creatingComponent'>
+        <input type='textarea' ng-model='theNewComponent'>
+      </form>
+
+      <!-- End new component section -->
+
       <div class='two column stackable ui grid'>
         <div class='column'>
           <ul class='ui segment'>
