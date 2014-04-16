@@ -51,16 +51,23 @@ epicookbook.config([
     .when("/recipes",
       templateUrl: "../templates/recipe/index.html"
       controller: "RecipesCtrl"
+      public: true
     )
 
     .when("/recipe/:recipeId",
       templateUrl: "../templates/recipe/show.html"
       controller: "RecipeCtrl"
+      public: true
     )
 
     .when("/filter/new",
       templateUrl: "../templates/filter/new.html"
       controller: "NewFilterCtrl"
+    )
+
+    .when("/filter/:filterId",
+      templateUrl: "../templates/filter/show.html"
+      controller: "FilterCtrl"
     )
 
     .otherwise templateUrl: "../templates/home.html"

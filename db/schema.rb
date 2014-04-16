@@ -11,12 +11,12 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140415023419) do
+ActiveRecord::Schema.define(version: 20140416175301) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "component_list", force: true do |t|
+  create_table "component_lists", force: true do |t|
     t.integer "nolist_id"
     t.integer "apid"
     t.string  "name"
@@ -29,11 +29,12 @@ ActiveRecord::Schema.define(version: 20140415023419) do
     t.datetime "updated_at"
   end
 
-  create_table "nolist", force: true do |t|
+  create_table "nolists", force: true do |t|
     t.string   "name"
     t.string   "uid"
     t.datetime "created_at"
     t.datetime "updated_at"
+    t.string   "component_id"
   end
 
   create_table "recipe_ingredients", force: true do |t|

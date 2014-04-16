@@ -4,16 +4,16 @@
   <div class='column'>
     <div class='ui segment'>
       Search for an Ingredient: <input ng-model="query">
-      <button ng-click='newIngredient()' ng-show='!createIngredient'>Add a new ingredient</button>
-      <button ng-click='newIngredient()' ng-show='createIngredient'>Undo new ingredient</button>
+      <button ng-click='newIngredient()' ng-show='!creatingIngredient'>Add a new ingredient</button>
+      <button ng-click='newIngredient()' ng-show='creatingIngredient'>Undo new ingredient</button>
     </div>
 
     <!-- Begin the new ingredient section -->
-    <div class='ui segment' ng-show='createIngredient'>
+    <div class='ui segment' ng-show='creatingIngredient'>
+      <input type='textarea' ng-model='newIngredientName' placeholder='Name your ingredient!' class='ui segment'></input> {{newIngredientName}}<br>
       What does your ingredient contain?: <input ng-model="componentQuery">
       <div class='two column stackable ui grid'>
         <div class='column'>
-          <input type='textarea' ng-model='newIngredientName' placeholder='Name your ingredient!' class='ui segment'></input> 
           <ul class='ui segment'>
             <li ng-repeat='component in components.sort() | filter: componentQuery'>
               <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>
@@ -53,7 +53,7 @@
     </ul>
   </div>
 
-  <form class='column'>
+  <form name='form' class='column' novalidate>
     <div class='ui segment'>
       <h3>Ingredients</h3>
 
@@ -67,10 +67,10 @@
 
     <div class='ui segment'>
       <h3>Details</h3>
-      Name: <input type='textarea' ng-model='recipe.name'><br>
+      Name: <input type='textarea' ng-model='recipe.name' required><br>
       Prep time (in minutes): <input type='number' ng-model='recipe.prep_time'><br>
       Inactive time (in minutes): <input type='number' ng-model='recipe.inactive_time'><br>
-      Blurb: <input type='textarea' ng-model='recipe.blurb' placeholder="Add a short description of your recipe! e.g. 'My grandma's favorite recipe, these cookies are ooey-gooey good!'"><br>
+      Blurb: <input type='textarea' ng-model='recipe.blurb' placeholder="Add a short description of your recipe! e.g. 'My grandma's favorite recipe, these cookies are ooey-gooey good!'" required><br>
       Image: <input type='file' ng-model='recipe.image' >
     </div>
 
@@ -92,13 +92,11 @@
 
     <div class='ui segment'>
       <div class='validations'>
-        <div ng-show='recipe.name == null'>* A recipe name is required</div>
-        <!-- clearly not DRY, but it works for now -->
-        <div ng-show='recipe.name.length == 0'>* A recipe name is required</div>
+        <div ng-show='form.$invalid'>* A recipe name and blurb are required</div>
         <div ng-show='recipeIngredients.length < 1'>* The recipe must include ingredients</div>
         <div ng-show='steps.length < 1'>* The recipe must include steps</div>
       </div>
-      <button ng-disabled='valid(recipe.name, recipeIngredients, steps)' ng-click='createRecipe(recipe, recipeIngredients, steps, user.user_id)'>Submit</button>
+      <button ng-disabled='form.$invalid || steps.length < 1 || recipeIngredients.length < 1' ng-click='createRecipe(recipe, recipeIngredients, steps, user.user_id)'>Submit</button>
     </div>
   </form>
 </div>

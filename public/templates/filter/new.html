@@ -26,7 +26,7 @@
       <ul ng-repeat='component in newFilter'>
         <li>{{component.name}}</li>
       </ul>
-      <button ng-show='newFilter.length > 0' ng-click='createFilter(filter.name, newFilter)'>Create your filter!</button>
+      <button ng-show='newFilter.length > 0' ng-click='createFilter(filter.name, newFilter, user.user_id)'>Create your filter!</button>
     </div>
   </form>
 </div>

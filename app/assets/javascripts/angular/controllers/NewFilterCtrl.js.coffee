@@ -27,9 +27,9 @@
         $scope.newFilter.splice(id, 1)
 
     # creates the actual filter
-    $scope.createFilter = (filterName, newFilter) ->
-      filterAddress = Restangular.all('filters.json')
-      filterParams = {name: filterName, components: newFilter}
-      recipeIngredientAddress.post(filterParams, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"})
-
+    $scope.createFilter = (filterName, newFilter, uid) ->
+      filterAddress = Restangular.all('nolists.json')
+      filterParams = {name: filterName, components: newFilter, uid: uid}
+      filterAddress.post(filterParams, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"}).then (filter) ->
+        window.location = "#/filter/" + filter.id
 ]

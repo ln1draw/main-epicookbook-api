@@ -1,0 +1,5 @@
+<h2 ng-show='filter.name'>{{filter.name}}</h2>
+<h2 ng-show='!filter.name'>Unnamed filter</h2>
+<ul ng-repeat='component in filter.components'>
+  <li>{{component.name}}</li>
+</ul>
