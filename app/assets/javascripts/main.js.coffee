@@ -70,6 +70,12 @@ epicookbook.config([
       controller: "FilterCtrl"
     )
 
+    .when("/search/:query",
+      templateUrl: "../templates/search.html"
+      controller: "SearchCtrl"
+      public: true
+    )
+
     .otherwise templateUrl: "../templates/home.html"
 ])
 
