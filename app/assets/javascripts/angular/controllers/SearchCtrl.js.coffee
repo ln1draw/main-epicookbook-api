@@ -7,4 +7,6 @@
 
     $scope.search = (query) ->
       window.location = "#/search/" + query
+
+      $scope.recipeQuery = $routeParams.recipeQuery
 ]
