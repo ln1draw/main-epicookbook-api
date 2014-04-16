@@ -1,9 +1,9 @@
 
-<div class='ui'>
+<div>
   <ul class='recipe-list'>
     <li ng-repeat='recipe in recipes.sort() | filter:query'>
       <div class='recipe'>
-        <a class='ui segment' href='/recipe/{{recipe.id}}'>
+        <a href='/#/recipe/{{recipe.id}}'>
           {{recipe.name}}<br>
           {{recipe.blurb}}
         </a>
