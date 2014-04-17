@@ -1,4 +1,4 @@
-class DirectionsController < ApplicationController
+class Api::DirectionsController < ApplicationController
   def create
     @directions = []
     params[:steps].each do |step|

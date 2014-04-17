@@ -7,7 +7,7 @@
 
     $scope.filterId = $routeParams.filterId
 
-    getFilter = Restangular.one('nolists/' + $scope.filterId + '.json').get().then (theFilter) ->
+    getFilter = Restangular.one('api/nolists/' + $scope.filterId + '.json').get().then (theFilter) ->
       $scope.filter = theFilter
 
 

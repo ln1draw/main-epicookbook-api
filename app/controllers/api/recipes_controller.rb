@@ -1,4 +1,4 @@
-class RecipesController < ApplicationController
+class Api::RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :update, :destroy]
 
   APIurl = 'http://localhost:4000/api/'
@@ -36,8 +36,19 @@ class RecipesController < ApplicationController
     id = params[:id].to_i
     @recipe_ingredients = RecipeIngredient.where(recipe_id: id)
     @ingredients = []
+    component_ids = []
     @recipe_ingredients.each do |recipe_ingredient|
-      @ingredients << HTTParty.get( APIurl + 'ingredients/' + recipe_ingredient.ingredient_id.to_s + '.json')
+      ingredient = HTTParty.get( APIurl + 'ingredients/' + recipe_ingredient.ingredient_id.to_s + '.json')
+      @ingredients << ingredient
+      ingredient.parsed_response['ingredient']['components'].each do |componet_id|
+        component_ids << componet_id
+      end
+    end
+    component_ids.uniq!
+    @components = []
+    component_ids.each do |component_id|
+      component = HTTParty.get( APIurl + 'components/' + component_id.to_s + '.json')
+      @components << component
     end
   end
 

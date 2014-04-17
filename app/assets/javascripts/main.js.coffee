@@ -76,9 +76,13 @@ epicookbook.config([
       public: true
     )
 
-    .otherwise templateUrl: "../templates/home.html"
+    .otherwise(
+      redirectTo: '/'
+    )
 ])
 
 .run ($rootScope, user) ->
   user.init appId: "5339e04524d20"
   return
+$locationProvider
+  .html5Mode(true);  

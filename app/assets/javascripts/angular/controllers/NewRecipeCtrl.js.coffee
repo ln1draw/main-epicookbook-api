@@ -17,7 +17,7 @@
     $scope.creatingComponent = false
 
     # this gets all of the components and saves them to the scope
-    getComponents = Restangular.all('components.json')
+    getComponents = Restangular.all('api/components.json')
     getComponents.getList().then (someComponents) ->
       $scope.components = someComponents
 
@@ -28,7 +28,7 @@
       0
 
     # this gets all of the ingredients and saves them to the scope
-    getIngredients = Restangular.all("ingredients.json")
+    getIngredients = Restangular.all("api/ingredients.json")
     getIngredients.getList().then (someIngredients) ->
       $scope.ingredients = someIngredients.sort(compare)
 
@@ -82,7 +82,7 @@
 
     # creates the new ingredient
     $scope.createIngredient = (newIngredients, newIngredientName) ->
-      newIngredient = Restangular.all('ingredient.json')
+      newIngredient = Restangular.all('api/ingredient.json')
       theIngredient = {name: newIngredientName, components: newIngredients}
       newIngredient.post(theIngredient, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"}).then (recipe) ->
         getIngredients.getList().then (someIngredients) ->
@@ -95,6 +95,12 @@
       else
         $scope.creatingComponent = true
 
+
+    # creates the new component
+    $scope.createComponent = (theNewComponent) ->
+      newComponent = Restangular.all('api/component.json')
+      newComponent.post({name: theNewComponent}, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"})
+
     # client-side validity checks
     $scope.valid = (recipeName, recipeIngredients, steps) ->
       if recipeName.length > 0 and recipe_ingredients.length > 0 and steps.length > 0 and recipe.length != null
@@ -105,9 +111,9 @@
     # creates a new recipe
     $scope.createRecipe = (recipe, recipeIngredients, steps, uid) ->
       # sets all of the URLs to be called in the API
-      recipeAddress = Restangular.all('recipes.json')
-      recipeIngredientAddress = Restangular.all('ingredients.json')
-      recipeSteps = Restangular.all('steps.json')
+      recipeAddress = Restangular.all('api/recipes.json')
+      recipeIngredientAddress = Restangular.all('api/ingredients.json')
+      recipeSteps = Restangular.all('api/steps.json')
 
       # sets values to be passed for the new recipe
       theRecipe = {uid: uid, blurb: recipe.blurb, image: recipe.image, name: recipe.name, prep_time: recipe.prep_time, inactive_time: recipe.inactive_time, makes: recipe.makes}

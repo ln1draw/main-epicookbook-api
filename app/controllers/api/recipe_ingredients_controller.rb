@@ -1,4 +1,4 @@
-class RecipeIngredientsController < ApplicationController
+class Api::RecipeIngredientsController < ApplicationController
 
   APIurl = 'http://localhost:4000/api/'
 
@@ -43,5 +43,11 @@ class RecipeIngredientsController < ApplicationController
     @ingredient = HTTParty.post( APIurl + 'ingredients.json', 
                                   body: to_post.to_json, 
                                   headers: {'Content-Type' => 'application/json'})
+  end
+
+  def new_component
+    @component = HTTParty.post( APIurl + 'components.json',
+                                body: {component: {name: params[:name]}}.to_json,
+                                headers: {'Content-Type' => 'application/json'})
   end
 end

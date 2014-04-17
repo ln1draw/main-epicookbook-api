@@ -1,4 +1,4 @@
-class NolistsController < ApplicationController
+class Api::NolistsController < ApplicationController
   def create
     @nolist = Nolist.create(uid: params[:uid], name: params[:name])
     params[:components].each do |component|

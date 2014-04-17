@@ -1,2 +1,7 @@
-@epicookbook.controller 'HomeCtrl', ['$scope', ($scope) ->
+@epicookbook.controller 'HomeCtrl', [
+  "$scope",
+  "Restangular",
+  "$location",
+  ($scope, Restangular) ->
+
 ]

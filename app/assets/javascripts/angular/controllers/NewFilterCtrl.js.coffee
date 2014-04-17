@@ -8,7 +8,7 @@
     $scope.newFilter = []
 
     # this gets all of the components and saves them to the scope
-    getComponents = Restangular.all('components.json')
+    getComponents = Restangular.all('api/components.json')
     getComponents.getList().then (someComponents) ->
       $scope.components = someComponents
 
@@ -28,7 +28,7 @@
 
     # creates the actual filter
     $scope.createFilter = (filterName, newFilter, uid) ->
-      filterAddress = Restangular.all('nolists.json')
+      filterAddress = Restangular.all('api/nolists.json')
       filterParams = {name: filterName, components: newFilter, uid: uid}
       filterAddress.post(filterParams, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"}).then (filter) ->
         window.location = "#/filter/" + filter.id
