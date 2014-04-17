@@ -54,6 +54,12 @@ epicookbook.config([
       public: true
     )
 
+    .when("/recipes/:page",
+      templateUrl: "../templates/recipe/index.html"
+      controller: "RecipesCtrl"
+      public: true
+    )
+
     .when("/recipe/:recipeId",
       templateUrl: "../templates/recipe/show.html"
       controller: "RecipeCtrl"
@@ -76,8 +82,15 @@ epicookbook.config([
       public: true
     )
 
+    .when("/search/:recipeQuery/:page",
+      templateUrl: "../templates/search.html"
+      controller: "SearchCtrl"
+      public: true
+    )
+
     .otherwise(
       redirectTo: '/'
+      public: true
     )
 ])
 

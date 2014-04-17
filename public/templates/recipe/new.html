@@ -27,7 +27,7 @@
       <div class='two column stackable ui grid'>
         <div class='column'>
           <ul class='ui segment'>
-            <li ng-repeat='component in components.sort() | filter: componentQuery'>
+            <li ng-repeat='component in components | filter: componentQuery'>
               <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>
               <label>{{component.name}}</label>
             </li>
@@ -52,10 +52,10 @@
     <!-- end new ingredient section -->
 
     <ul class='ui segment'>
-      <li class='ingredient-list' ng-repeat='ingredient in ingredients.sort() | filter:query'>
+      <li class='ingredient-list' ng-repeat='ingredient in ingredients | filter:query'>
         <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
         <span ng-click='show(ingredient)'>
-          <label>{{ingredient.name}}<i class="dropdown icon"></i></label>
+          <label>{{ingredient.name}}<i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i></label>
         </span>
         <!-- this is only visible when the user clicks on the ingredient -->
         <ul ng-repeat='component in ingredient.components'>

@@ -14,16 +14,18 @@
     <div class='ui segment'>
       <h3>Ingredients</h3>
       <ul ng-repeat='ingredient in ingredients'>
-        <li>{{ingredientStats(ingredient)}} {{ingredient.ingredient.name}}</li>
+        <li ng-click='show(ingredient)'>{{ingredientStats(ingredient)}} {{ingredient.ingredient.name}} <i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i></li>
+        <!-- this is only visible when you click on the ingredient -->
         <ul ng-repeat='component in ingredientComponents(ingredient)'>
-          <li>{{component}}</li>
+          <li ng-show='ingredient.notHidden'>{{component}}</li>
         </ul>
-        <!-- <li>{{ingredient.quantity}} {{ingredient.unit}} {{ingredient.name}}</li> -->
       </ul>
     </div>
     <div class='ui segment'>
-      <ol ng-repeat='step in steps'>
-        <li>{{step.content}}</li>
+      <ol>
+        <div ng-repeat='step in steps'>
+          <li>{{step.content}}</li>
+        </div>
       </ol>
     </div>
   </div>

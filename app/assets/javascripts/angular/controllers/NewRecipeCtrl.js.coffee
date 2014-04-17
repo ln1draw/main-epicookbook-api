@@ -99,7 +99,9 @@
     # creates the new component
     $scope.createComponent = (theNewComponent) ->
       newComponent = Restangular.all('api/component.json')
-      newComponent.post({name: theNewComponent}, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"})
+      newComponent.post({name: theNewComponent}, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"}).then (recipe) ->
+        getComponents.getList().then (someComponents) ->
+          $scope.components = someComponents
 
     # client-side validity checks
     $scope.valid = (recipeName, recipeIngredients, steps) ->

@@ -45,4 +45,11 @@
       else
         $scope.verified = 'WARNING: This recipe is not verified!'
         # $scope.verifiedStyle = {color: red}
+
+    # This toggles view of the components of a particular ingredient
+    $scope.show = (ingredient) ->
+      if ingredient.notHidden
+        ingredient.notHidden = false
+      else
+        ingredient.notHidden = true
 ]

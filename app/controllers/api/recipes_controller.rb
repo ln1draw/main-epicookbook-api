@@ -13,7 +13,7 @@ class Api::RecipesController < ApplicationController
   def create
     @recipe = Recipe.new(recipe_params)
     if @recipe.save
-      render action: 'show', status: :created, location: @recipe
+      render action: 'show', status: :created, location: [:api, @recipe]
     else
       render json: @recipe.errors, status: :unprocessable_entity
     end
