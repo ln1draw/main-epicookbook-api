@@ -17,5 +17,5 @@
     getRecipes.getList().then (someRecipes) ->
       $scope.recipes = someRecipes
 
-    
+    $scope.filters = [{name: 'corn', uid: 1}, {name: 'gluten', uid: 1}]
 ]

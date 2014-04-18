@@ -1,7 +1,7 @@
 class RecipesController < ApplicationController
   before_action :set_recipe, only: [:show, :update, :destroy]
 
-  APIurl = 'http://localhost:4000/api/'
+  APIurl = 'http://www.whatsinmyfood.info/api/'
 
   def index
     @recipes = Recipe.all

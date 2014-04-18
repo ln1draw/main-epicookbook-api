@@ -29,6 +29,12 @@
       <div class='item' ng-controller='SearchCtrl'>
         <input ng-model='recipeQuery' placeholder='Search for a recipe!'>
         <button ng-click='search(recipeQuery)'>Search</button>
+        <span class='nullable' ng-show='user.authenticated'>
+          <select ng-model='filter' ng-options='filter.name for filter in filters'>
+            <option value=''>Add a filter!</option>
+          </select>
+        </span>
+        <span ng-show='!user.authenticated'><a href='#/login'>Log in</a> to filter by dietary restrictions</span>
       </div>
     </div>
   </div>

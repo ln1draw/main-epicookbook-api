@@ -1,6 +1,6 @@
 class Api::RecipeIngredientsController < ApplicationController
 
-  APIurl = 'http://localhost:4000/api/'
+  APIurl = 'http://www.whatsinmyfood.info/api/'
 
   def index
     @recipe_ingredients = RecipeIngredient.all
