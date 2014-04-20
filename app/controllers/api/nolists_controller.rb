@@ -14,4 +14,8 @@ class Api::NolistsController < ApplicationController
   def show
     @nolist = Nolist.find(params[:id])
   end
+
+  def by_uid
+    @nolists = Nolist.where(uid: params[:uid])
+  end
 end

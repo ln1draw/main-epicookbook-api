@@ -15,7 +15,7 @@
   <base href="/"></base>
 </head>
 <body>
-<div class='header'>
+<div class='header' ng-controller='SearchCtrl'>
     <%= link_to(image_tag('logo2.jpg', alt: "logo", title: "Welcome", class: 'header-pic'),"/") %>
     <div class="ui menu">
       <a class='item' ng-show="!user.authenticated" href="#/login">log in</a>
@@ -26,18 +26,18 @@
       <a class='item' ng-show="user.authenticated" href='#/filter/new'>new filter</a>
       <a class='item' ng-show='user.authenticated' href='#/recipe/new'>new recipe</a>
       <a class='item' href='#/recipes'>all recipes</a>
-      <div class='item' ng-controller='SearchCtrl'>
+      <div class='item'>
         <input ng-model='recipeQuery' placeholder='Search for a recipe!'>
-        <button ng-click='search(recipeQuery)'>Search</button>
-        <span class='nullable' ng-show='user.authenticated'>
-          <select ng-model='filter' ng-options='filter.name for filter in filters'>
-            <option value=''>Add a filter!</option>
-          </select>
-        </span>
+        <button ng-click='search(recipeQuery, selectedFilters)'>Search</button>
+        <button ng-click='getFilters(user.user_id)' ng-show='user.authenticated'>Add a filter</button>
         <span ng-show='!user.authenticated'><a href='#/login'>Log in</a> to filter by dietary restrictions</span>
       </div>
     </div>
+    <ul class='item'>
+      <li ng-repeat='filter in filters'><input type='checkbox' name='filter.id' ng-click='addFilter(filter)'> {{filter.name}}</li>
+    </ul>
   </div>
+  
 
 <div ng-view class='content'>
   <%= yield %>
