@@ -1,32 +1,48 @@
-<h2>Create a new filter!</h2>
-<div class='two column stackable ui grid'>
-  <div class='column'>
-    <div class='ui segment'> 
-      Name your filter: <input ng-model='filter.name' placeholder="e.g. 'Jill' or 'paleo'">
+<div class='ui segment'>
+  <div class='two column stackable ui grid'>
+    <div class='column'>
+      <h2 ng-show='filter.name' class='filter-header'>{{filter.name}}</h2>
+      <h2 ng-show='!filter.name' class='filter-header'>Create a new filter!</h2>
+      <div class='filter-header'>Name your filter: <input ng-model='filter.name' placeholder="e.g. 'Jill' or 'paleo'"></div>
     </div>
-    <div class='ui segment'>Search for an Ingredient: <input ng-model="query"></div>
+    <div class='column'>
+      <!-- This text is only visible when there are no components selected -->
+        <h3 ng-show='newFilter.length == 0' class='filter-header'> Select some components to get started.</h3>
+        <h3 ng-show='newFilter.length > 0'>Don't show me recipes with:</h3>
+        <ul ng-repeat='component in newFilter'>
+          <li>{{component.name}}</li>
+        </ul>
+        <button ng-show='newFilter.length > 0' ng-click='createFilter(filter.name, newFilter, user.user_id)'>Create your filter!</button>
+    </div>
+  </div>
+</div>
 
-    <ul class='ui segment'>
-      <div>Add it to your filter:</div><br>
-      <li class='component-list' ng-repeat='component in components | filter:query'>
+<div class='ui segment'>
+  <div class='filter-search-bar'>
+    Search for an Ingredient: <input ng-model="query">
+  </div>
+</div>
+
+<div class='ui segment'>
+  <div class=filter-header>Add it to your filter:</div><br>
+  <div class='three column stackable ui grid'>
+    <ul class='column'>
+      <li class='filter-contents' ng-repeat='component in components1 | filter:query'>
+        <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>
+        <label>{{component.name}}<i class="dropdown icon"></i></label>
+      </li>
+    </ul>
+    <ul class='column'>
+      <li class='filter-contents' ng-repeat='component in components2 | filter:query'>
+        <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>
+        <label>{{component.name}}<i class="dropdown icon"></i></label>
+      </li>
+    </ul>
+    <ul class='column'>
+      <li class='filter-contents' ng-repeat='component in components3 | filter:query'>
         <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>
         <label>{{component.name}}<i class="dropdown icon"></i></label>
       </li>
     </ul>
   </div>
-
-
-  <form class='column'>
-    <div class='ui segment'>
-      <h3>{{filter.name}}</h3>
-
-      <!-- This text is only visible when there are no components selected -->
-      <div ng-show='newFilter.length == 0'> Select some components to get started!</div>
-
-      <ul ng-repeat='component in newFilter'>
-        <li>{{component.name}}</li>
-      </ul>
-      <button ng-show='newFilter.length > 0' ng-click='createFilter(filter.name, newFilter, user.user_id)'>Create your filter!</button>
-    </div>
-  </form>
 </div>

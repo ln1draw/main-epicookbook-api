@@ -98,6 +98,7 @@ epicookbook.config([
 
     .when('/',
       templateUrl: "../templates/home.html"
+      public: true
     )
 
     .otherwise(

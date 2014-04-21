@@ -37,6 +37,22 @@ ul li{
   list-style-type: none;
 }
 
+#home-kneading-img{
+  width: 100%;
+}
+
+.filter-search-bar{
+  text-align: center;
+}
+
+.filter-header{
+  text-align: center;
+}
+
+.filter-contents{
+  margin: auto;
+}
+
 /*.recipe{
   width: 100%;
 }
