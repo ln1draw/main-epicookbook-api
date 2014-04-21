@@ -9,7 +9,7 @@ class Recipe < ActiveRecord::Base
     ingredients = []
     component_ids = []
     recipe_ingredients.each do |recipe_ingredient|
-      ingredient = HTTParty.get('http://localhost:4000/api/ingredients/' + recipe_ingredient.ingredient_id.to_s + '.json')
+      ingredient = HTTParty.get('http://www.whatsinmyfood.info/api/ingredients/' + recipe_ingredient.ingredient_id.to_s + '.json')
       ingredients << ingredient
       ingredient.parsed_response['ingredient']['components'].each do |component_id|
         component_ids << component_id
