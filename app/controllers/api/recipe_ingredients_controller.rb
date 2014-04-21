@@ -1,6 +1,6 @@
 class Api::RecipeIngredientsController < ApplicationController
 
-  APIurl = 'http://www.whatsinmyfood.info/api/'
+  APIurl = 'http://localhost:4000/api/'
 
   def index
     @recipe_ingredients = RecipeIngredient.all
@@ -28,6 +28,8 @@ class Api::RecipeIngredientsController < ApplicationController
         recipe_id: params[:recipe_id]
       )
     end
+    component_ids = Recipe.get_ingredients_and_component_ids(@recipe_ingredients)
+    Recipe.update(params[:recipe_id].to_i, component_ids: component_ids.join(','))
   end
 
   def new_ingredient

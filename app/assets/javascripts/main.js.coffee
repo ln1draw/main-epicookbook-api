@@ -82,15 +82,26 @@ epicookbook.config([
       public: true
     )
 
-    .when("/search/:recipeQuery/:page",
+    .when("/search/:recipeQuery/:filters",
       templateUrl: "../templates/search.html"
       controller: "SearchCtrl"
       public: true
     )
 
+    .when("/logout",
+      templateUrl: "../templates/user/logout.html"
+    )
+
+    .when("/product-plan",
+      templateUrl: "../templates/product-plan.html"
+    )
+
+    .when('/',
+      templateUrl: "../templates/home.html"
+    )
+
     .otherwise(
       redirectTo: '/'
-      public: true
     )
 ])
 

@@ -35,16 +35,7 @@ class Api::RecipesController < ApplicationController
   def ingredients
     id = params[:id].to_i
     @recipe_ingredients = RecipeIngredient.where(recipe_id: id)
-    @ingredients = []
-    component_ids = []
-    @recipe_ingredients.each do |recipe_ingredient|
-      ingredient = HTTParty.get( APIurl + 'ingredients/' + recipe_ingredient.ingredient_id.to_s + '.json')
-      @ingredients << ingredient
-      ingredient.parsed_response['ingredient']['components'].each do |componet_id|
-        component_ids << componet_id
-      end
-    end
-    component_ids.uniq!
+    component_ids = Recipe.get_ingredients_and_component_ids(@recipe_ingredients)
     @components = []
     component_ids.each do |component_id|
       component = HTTParty.get( APIurl + 'components/' + component_id.to_s + '.json')
@@ -57,9 +48,42 @@ class Api::RecipesController < ApplicationController
     @directions = Direction.where(recipe_id: id)
   end
 
+  def search_with_filter
+    all_recipes = Recipe.all
+    nolist_ids = params[:ids].split(',')
+    component_id_array = []
+    nolist_ids.each do |id|
+      list = Nolist.find(id.to_i)
+      list.component_lists.each do |cl|
+        component_id_array << cl.apid.to_s
+      end
+    end
+    component_id_array.uniq!
+    puts "component id array #{component_id_array}"
+    @recipes = []
+    all_recipes.each do |recipe|
+      if recipe.component_ids
+        puts "recipe #{recipe.name}"
+        recipe_components = recipe.component_ids.split(',')
+        puts "recipe components #{recipe_components}"
+        all_components = component_id_array + recipe_components
+        puts "all components #{all_components}"
+        puts ".uniq!.length #{all_components.uniq.length}"
+        puts "length #{all_components.length}"
+        if all_components.uniq.length == all_components.length
+          puts "added #{recipe.name} to the list"
+          @recipes << recipe
+        end
+      end
+    end
+    puts "@recipes #{@recipes}"
+  
+    render :index
+  end
+
   private
   def recipe_params
-    params.require(:recipe).permit(:name, :id, :verified, :blurb, :image, :uid, :prep_time, :inactive_time, :recipe_ingredients => {}, :directions => {})
+    params.require(:recipe).permit(:name, :id, :ids, :verified, :blurb, :image, :uid, :prep_time, :inactive_time, :recipe_ingredients => {}, :directions => {})
   end
 
   def set_recipe

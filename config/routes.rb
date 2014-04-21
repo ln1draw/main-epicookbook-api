@@ -12,6 +12,7 @@ MainEpicookbookAPI::Application.routes.draw do
     get  'nolists/:id'             => 'nolists#show'
     post 'component'               => 'recipe_ingredients#new_component'
     get  'users/:uid/nolists'      => 'nolists#by_uid'
+    get  'search/:ids'             => 'recipes#search_with_filter'
 
     resources :recipes
   end

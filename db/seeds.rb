@@ -27,6 +27,7 @@ Recipe.create([
     inactive_time: 600,
     makes: '4 servings',
     verified: true,
-    name: "Banana 'ice cream'"
+    name: "Banana 'ice cream'",
+    component_ids: '1,2'
   },  
 ])

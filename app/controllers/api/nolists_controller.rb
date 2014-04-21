@@ -1,6 +1,7 @@
 class Api::NolistsController < ApplicationController
   def create
     @nolist = Nolist.create(uid: params[:uid], name: params[:name])
+    puts 'components'
     params[:components].each do |component|
       @nolist.component_lists.create(
         apid: component['id'], 
