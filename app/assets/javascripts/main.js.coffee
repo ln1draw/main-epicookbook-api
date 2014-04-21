@@ -14,90 +14,91 @@ epicookbook.config([
     $routeProvider
 
     .when("/login",
-      templateUrl: "../templates/user/login.html"
+      # templateUrl: "<%= asset_path('../templates/user/login.html') %>"
+      templateUrl: "/templates/user/login.html"
       public: true
       login: true
     )
 
     .when("/signup",
-      templateUrl: "../templates/user/signup.html"
+      templateUrl: "/templates/user/signup.html"
       public: true
     )
 
     .when("/profile",
-      templateUrl: "../templates/user/profile.html"
+      templateUrl: "/templates/user/profile.html"
     )
 
     .when("/verify-email",
-      templateUrl: "../templates/user/verify-email.html"
+      templateUrl: "/templates/user/verify-email.html"
       verify_email: true
     )
 
     .when("/reset-password",
-      templateUrl: "../templates/user/reset-password.html"
+      templateUrl: "/templates/user/reset-password.html"
       public: true
     )
 
     .when("/set-password",
-      templateUrl: "../templates/user/set-password.html"
+      templateUrl: "/templates/user/set-password.html"
       set_password: true
     )
 
     .when("/recipe/new",
-      templateUrl: "../templates/recipe/new.html"
+      templateUrl: "/templates/recipe/new.html"
       controller: "NewRecipeCtrl"
     )
 
     .when("/recipes",
-      templateUrl: "../templates/recipe/index.html"
+      templateUrl: "/templates/recipe/index.html"
       controller: "RecipesCtrl"
       public: true
     )
 
     .when("/recipes/:page",
-      templateUrl: "../templates/recipe/index.html"
+      templateUrl: "/templates/recipe/index.html"
       controller: "RecipesCtrl"
       public: true
     )
 
     .when("/recipe/:recipeId",
-      templateUrl: "../templates/recipe/show.html"
+      templateUrl: "/templates/recipe/show.html"
       controller: "RecipeCtrl"
       public: true
     )
 
     .when("/filter/new",
-      templateUrl: "../templates/filter/new.html"
+      templateUrl: "/templates/filter/new.html"
       controller: "NewFilterCtrl"
     )
 
     .when("/filter/:filterId",
-      templateUrl: "../templates/filter/show.html"
+      templateUrl: "/templates/filter/show.html"
       controller: "FilterCtrl"
     )
 
     .when("/search/:recipeQuery",
-      templateUrl: "../templates/search.html"
+      templateUrl: "/templates/search.html"
       controller: "SearchCtrl"
       public: true
     )
 
     .when("/search/:recipeQuery/:filters",
-      templateUrl: "../templates/search.html"
+      templateUrl: "/templates/search.html"
       controller: "SearchCtrl"
       public: true
     )
 
     .when("/logout",
-      templateUrl: "../templates/user/logout.html"
+      templateUrl: "/templates/user/logout.html"
     )
 
     .when("/product-plan",
-      templateUrl: "../templates/product-plan.html"
+      templateUrl: "/templates/product-plan.html"
     )
 
     .when('/',
-      templateUrl: "../templates/home.html"
+      templateUrl: "/templates/home.html"
       public: true
     )
 
