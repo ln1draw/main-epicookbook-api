@@ -24,8 +24,8 @@
 </div>
 
 <div class='ui segment'>
-  <div class=filter-header>Add it to your filter:</div><br>
-  <div class='three column stackable ui grid'>
+  <div class='filter-header'>Add it to your filter:</div><br>
+  <div class='three column stackable ui grid' id='filter-components'>
     <ul class='column'>
       <li class='filter-contents' ng-repeat='component in components1 | filter:query'>
         <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>

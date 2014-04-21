@@ -41,6 +41,7 @@ ul li{
   width: 100%;
 }
 
+/* new filter */
 .filter-search-bar{
   text-align: center;
 }
@@ -52,11 +53,16 @@ ul li{
 .filter-contents{
   margin: auto;
 }
+/* end new filter */
 
-/*.recipe{
+/* recipe index */
+.recipe-list{
   width: 100%;
+  padding-left: 0;
 }
 
-.recipe a{
+.recipe-list li a{
+  color: black;
+  text-decoration: none;
   width: 100%;
-}*/
+}
