@@ -15,7 +15,6 @@
 //= require angular-route
 //= require angular-animate
 //= require lodash
-
-//= require_tree ./angular/controllers
 //= require main
+//= require_tree ./angular/controllers
 //= require_tree .
