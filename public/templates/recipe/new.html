@@ -14,7 +14,7 @@
 </div>
 
 <h2 class='new-recipe-label'>STEP 1: Details</h2>
-<div class='ui form segment'>
+<form name='form' class='ui form segment' novalidate>
   <table class='recipe-input'>
     <tr>
       <td>Recipe name:</td>
@@ -34,7 +34,7 @@
       <td><i class="lightbulb filter info icon" data-content="Add a short description of your recipe! e.g. 'My grandma's favorite recipe, these cookies are ooey-gooey good!'"></td>
     </tr>
   </table>
-</div>
+</form>
 
 
 <div class="ui horizontal icon divider">
@@ -48,20 +48,20 @@
     <div class='ui segment'>
       Search for an Ingredient: <input ng-model="query"></input>
       <button ng-click='newIngredient()' ng-show='!creatingIngredient'>Add a new ingredient</button>
-      <button ng-click='newIngredient()' ng-show='creatingIngredient'>Undo new ingredient</button>
+      <button ng-click='newIngredient()' ng-show='creatingIngredient'>Hide new ingredient form</button>
 
       <!-- Begin the new ingredient section -->
-      <div ng-show='creatingIngredient'>
-        <input type='textarea' ng-model='newIngredientName' placeholder='Name your ingredient!' class='ui segment'></input> {{newIngredientName}}<br>
-        What is your ingredient made out of?: <input ng-model="componentQuery" placeholder='Search for a component'></input><br>
+      <div class='ui form' ng-show='creatingIngredient'><br>
+        <input type='text' ng-model='newIngredientName' placeholder='Name your ingredient!' class='ui segment'></input> {{newIngredientName}}<br><br>
+        What is your ingredient made out of?: <input ng-model="componentQuery" placeholder='Search components'></input><i class="small info filter icon" data-html="<h4>What is a component?</h4><div>Components are the basic pieces ingredients are made out of. They're how we determine whether an ingredient is allergy-friendly, vegetarian, etc.</div><br><div>For example, brown sugar (the ingredient) is made out of sugar and molasses (the components)</div>"></i><br><br>
 
         <!-- Begins new component section -->
-        <small>I don't see what I need! <button ng-click='newComponent()' ng-show='!creatingComponent'>Add a new component</button>
-        <button ng-click='newComponent()' ng-show='creatingComponent'>Undo new component</button></small>
+        <small ng-show='!creatingComponent'>I don't see what I need! <button ng-click='newComponent()' ng-show='!creatingComponent'>Add a new component</button><br>
+        <button ng-click='newComponent()' ng-show='creatingComponent'>Hide new component form</button></small>
 
         <form novalidate ng-show='creatingComponent'>
           <input type='textarea' ng-model='theNewComponent'></input>
-          <button type='submit' ng-click='createComponent(theNewComponent)'>Create!</button>
+          <button type='submit' ng-click='createComponent(theNewComponent)'>Create component!</button>
         </form>
 
         <!-- Begin new component section -->
@@ -121,7 +121,7 @@
   </div>
 
   <div class='column'>
-    <form name='form' novalidate class='ui segment'>
+    <form novalidate class='ui segment'>
       <h3>Ingredients</h3>
 
       <!-- This text is only visible when there are no ingredients selected -->
@@ -134,27 +134,40 @@
   </div>
 </div>
 
+<div class="ui horizontal icon divider">
+  <i class="circular food icon"></i>
+</div>
+
 <h2 class='new-recipe-label'>STEP 3: Directions</h2>
 
-    <div class='ui segment'>
-      <h3>Steps</h3>
+<div class='two column stackable ui grid'>
+  <div class='column'>
+    <!-- writing new steps -->
+    <div class='ui form segment'>
+      <input type='text' placeholder='Add a step!' ng-model='step.content' value='step'/>
+      <i class='add icon' ng-click='addStep(step)' ng-show='step.content.length > 0'></i>
+    </div>
+  </div>
 
-      <!-- step display -->
+  <!-- step display -->
+  <div class='column'>
+    <div class='ui segment'>
+      <h3>Directions:</h3>
+      <div ng-show='!steps.length'>You haven't added any steps yet! Don't forget to click on the "plus" after you write a step.</div>
       <ol ng-show='steps.length > 0'>
-        <!-- needs to be in a separate div or every number is 1 -->
+      <!-- needs to be in a separate div or every number is 1 -->
         <div ng-repeat='step in steps' ng-model='recipe.steps'>
           <li>{{step.content}}</li>
         </div>
       </ol>
-
-      <!-- writing new steps -->
-      <input type='textarea' placeholder='Add a step!' ng-model='step.content' value='step'/>
-      <i class='add icon' ng-click='addStep(step)' ng-show='step.content.length > 0'></i>
     </div>
+  </div>
+</div>
+
 
     <div class='ui segment'>
       <div class='validations'>
-        <div ng-show='form.$invalid'>* A recipe name and blurb are required</div>
+        <div ng-show='form.$invalid'>* A recipe name and description are required</div>
         <div ng-show='recipeIngredients.length < 1'>* The recipe must include ingredients</div>
         <div ng-show='steps.length < 1'>* The recipe must include steps</div>
       </div>
