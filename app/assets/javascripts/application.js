@@ -16,6 +16,6 @@
 //= require angular-animate
 //= require lodash
 
-// look into require controllers tree syntax
+//= require_tree ../angular/controllers
 //= require main
 //= require_tree .
