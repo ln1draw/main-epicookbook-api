@@ -41,4 +41,6 @@
 
     $scope.reloadRoute = ->
       $route.reloadRoute
+
+    $(".ui.dropdown").dropdown()
 ]

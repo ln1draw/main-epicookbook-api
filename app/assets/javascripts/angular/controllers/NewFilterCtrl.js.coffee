@@ -46,4 +46,7 @@
       filterParams = {name: filterName, components: newFilter, uid: uid}
       filterAddress.post(filterParams, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"}).then (filter) ->
         window.location = "#/filter/" + filter.id
+
+    # settings for the semantic ui module
+    $(".filter.info").popup on: "click"
 ]
