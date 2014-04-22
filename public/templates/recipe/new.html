@@ -188,6 +188,10 @@
   </ol>
 </div>
 
+<div class="ui horizontal icon divider">
+  <i class="circular food icon"></i>
+</div>
+
 <div class='ui segment'>
   <div class='validations'>
     <div ng-show='form.$invalid'>* A recipe name and description are required</div>
@@ -196,3 +200,4 @@
   </div>
   <button ng-disabled='form.$invalid || steps.length < 1 || recipeIngredients.length < 1' ng-click='createRecipe(recipe, recipeIngredients, steps, user.user_id)'>Submit</button>
 </div>
+<br><br>
