@@ -84,3 +84,8 @@ ul li{
 .recipe-input{
   width: 100%;
 }
+
+/* show recipe */
+.recipe-show h2{
+  margin: auto;
+}

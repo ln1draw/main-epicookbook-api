@@ -1,31 +1,27 @@
-<h2>{{recipe.name}}</h2>
-<h3 ng-bind-html-unsafe='verified' ng-style='verifiedStyle'></h3>
-<div class='two column stackable ui grid'>
-  <div class='column'>
-    <div class='ui segment'>{{recipe.blurb}}</div>
-    <div class='ui segment'>
+<div class='recipe-show'>
+  <h2 class='ui segment'>{{recipe.name}}</h2>
+  <h3 ng-bind-html-unsafe='verified' ng-style='verifiedStyle'></h3>
+  <div class='ui segment'>
+    <div>{{recipe.blurb}}</div><br>
+    <div>
       Prep time: {{recipe.prep_time}} minutes<br>
       Inactive time: {{recipe.inactive_time}} minutes
     </div>
-  </div>
 
-  <div class='column'>
-    <div class='ui segment'>
-      <h3>Ingredients</h3>
-      <ul ng-repeat='ingredient in ingredients'>
-        <li ng-click='show(ingredient)'>{{ingredientStats(ingredient)}} {{ingredient.ingredient.name}} <i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i></li>
-        <!-- this is only visible when you click on the ingredient -->
-        <ul ng-repeat='component in ingredientComponents(ingredient)'>
-          <li ng-show='ingredient.notHidden'>{{component}}</li>
-        </ul>
+    <h3>Ingredients</h3>
+    <ul ng-repeat='ingredient in ingredients'>
+      <li ng-click='show(ingredient)'>{{ingredientStats(ingredient)}} {{ingredient.ingredient.name}} <i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i></li>
+      <!-- this is only visible when you click on the ingredient -->
+      <ul ng-repeat='component in ingredientComponents(ingredient)'>
+        <li ng-show='ingredient.notHidden'>{{component}}</li>
       </ul>
-    </div>
-    <div class='ui segment'>
-      <ol>
-        <div ng-repeat='step in steps'>
-          <li>{{step.content}}</li>
-        </div>
-      </ol>
-    </div>
+    </ul>
+
+    <h3>Directions:</h3>
+    <ol>
+      <div ng-repeat='step in steps'>
+        <li>{{step.content}}</li>
+      </div>
+    </ol>
   </div>
 </div>

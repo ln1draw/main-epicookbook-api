@@ -7,6 +7,7 @@
     $scope.recipeId = $routeParams.recipeId
 
     getIngredients = Restangular.one('api/recipes/' + $scope.recipeId + '/ingredients.json').get().then (theIngredients) ->
+      $scope.showIngredients = theIngredients
       $scope.ingredients = theIngredients['ingredients']
       $scope.recipe_ingredients = theIngredients['recipe_ingredients']
       $scope.components = theIngredients['components']['components']

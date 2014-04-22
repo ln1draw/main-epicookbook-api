@@ -46,7 +46,7 @@
 <div class='two column stackable ui grid'>
   <div class='column'>
     <div class='ui segment'>
-      Search for an Ingredient: <input ng-model="query"></input>
+      Search for an Ingredient: <input ng-model="query"></input><i class="small info filter icon" data-html="<h4>Why do I have to pick from a list?</h4><div>Here at Epicookbook, we put a lot of value in keeping our information reliable. We think that you should know what goes into your food. We use this controlled ingredient list to help keep our information consistent and reliable, so you can eat without worrying about anything but how it tastes.</div>"></i>
       <button ng-click='newIngredient()' ng-show='!creatingIngredient'>Add a new ingredient</button>
       <button ng-click='newIngredient()' ng-show='creatingIngredient'>Hide new ingredient form</button>
 
@@ -145,7 +145,7 @@
     <!-- writing new steps -->
     <div class='ui form segment'>
       <input type='text' placeholder='Add a step!' ng-model='step.content' value='step'/>
-      <i class='add icon' ng-click='addStep(step)' ng-show='step.content.length > 0'></i>
+      <button ng-show='step.content.length > 0'><i class='add icon' ng-click='addStep(step)'></i>Add a step!</button>
     </div>
   </div>
 
@@ -153,7 +153,7 @@
   <div class='column'>
     <div class='ui segment'>
       <h3>Directions:</h3>
-      <div ng-show='!steps.length'>You haven't added any steps yet! Don't forget to click on the "plus" after you write a step.</div>
+      <div ng-show='!steps.length'>You haven't added any steps yet! Don't forget to click on "add step" after you write a step.</div>
       <ol ng-show='steps.length > 0'>
       <!-- needs to be in a separate div or every number is 1 -->
         <div ng-repeat='step in steps' ng-model='recipe.steps'>
@@ -164,14 +164,35 @@
   </div>
 </div>
 
+<div class="ui horizontal icon divider">
+  <i class="circular food icon"></i>
+</div>
 
-    <div class='ui segment'>
-      <div class='validations'>
-        <div ng-show='form.$invalid'>* A recipe name and description are required</div>
-        <div ng-show='recipeIngredients.length < 1'>* The recipe must include ingredients</div>
-        <div ng-show='steps.length < 1'>* The recipe must include steps</div>
-      </div>
-      <button ng-disabled='form.$invalid || steps.length < 1 || recipeIngredients.length < 1' ng-click='createRecipe(recipe, recipeIngredients, steps, user.user_id)'>Submit</button>
+<h2 class='new-recipe-label'>STEP 4: Review & Submit</h2>
+
+<div class='ui segment'>
+  <h2>{{recipe.name}}</h2>
+  {{recipe.blurb}}<br>
+  Prep time: {{recipe.prep_time}}<br>
+  Inactive time: {{recipe.inactive_time}}<br>
+  Ingredients:
+  <ul ng-repeat='ingredient in recipeIngredients'>
+    <li>{{ingredient.quantity}} {{ingredient.unit}} {{ingredient.name}}</li>
+  </ul>
+  Directions:
+  <ol>
+  <!-- needs to be in a separate div or every number is 1 -->
+    <div ng-repeat='step in steps' ng-model='recipe.steps'>
+      <li>{{step.content}}</li>
     </div>
-  </form>
+  </ol>
+</div>
+
+<div class='ui segment'>
+  <div class='validations'>
+    <div ng-show='form.$invalid'>* A recipe name and description are required</div>
+    <div ng-show='recipeIngredients.length < 1'>* The recipe must include ingredients</div>
+    <div ng-show='steps.length < 1'>* The recipe must include steps</div>
+  </div>
+  <button ng-disabled='form.$invalid || steps.length < 1 || recipeIngredients.length < 1' ng-click='createRecipe(recipe, recipeIngredients, steps, user.user_id)'>Submit</button>
 </div>
