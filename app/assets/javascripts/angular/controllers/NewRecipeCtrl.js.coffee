@@ -30,7 +30,15 @@
     # this gets all of the ingredients and saves them to the scope
     getIngredients = Restangular.all("api/ingredients.json")
     getIngredients.getList().then (someIngredients) ->
-      $scope.ingredients = someIngredients.sort(compare)
+      ingredients = someIngredients.sort(compare)
+      remainder = ingredients.length % 2
+      divisor = (ingredients.length - remainder) / 3
+      if remainder is 0
+        r1 = divisor + 1
+      else
+        r1 = divisor + 2
+      $scope.ingredients1 = ingredients.slice(0, r1)
+      $scope.ingredients2 = ingredients.slice(r1, ingredients.length)
 
     # This toggles view of the components of a particular ingredient
     $scope.show = (ingredient) ->
@@ -133,4 +141,7 @@
         theSteps = {steps: steps, recipe_id: recipe.id}
         recipeSteps.post(theSteps, {}, {}, {"X-CSRF-Token": $("meta[name=\"csrf-token\"]").attr "content"})
         window.location = "#/recipe/" + recipe.id
+
+    # settings for the semantic ui module
+    $(".filter.info").popup on: "click"
 ]

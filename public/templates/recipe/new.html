@@ -1,72 +1,127 @@
-<h2>New Recipe</h2>
+<h1 class='new-recipe-label'>Create a new recipe!</h1>
+<div class='ui segment'>
+  <h3>Create a new recipe in 4 easy steps:</h3>
+  <ol>
+    <li>Provide details</li>
+    <li>Add ingredients</li>
+    <li>Add directions</li>
+    <li>Review and submit</li>
+  </ol>
+</div>
+
+<div class="ui horizontal icon divider">
+  <i class="circular food icon"></i>
+</div>
+
+<h2 class='new-recipe-label'>STEP 1: Details</h2>
+<div class='ui form segment'>
+  <table class='recipe-input'>
+    <tr>
+      <td>Recipe name:</td>
+      <td><input type='text' ng-model='recipe.name' required></td>
+    </tr>
+    <tr>
+      <td>Prep time (in minutes):</td>
+      <td><input type='text' ng-model='recipe.prep_time'></td>
+    </tr>
+    <tr>
+      <td>Inactive time (in minutes):</td>
+      <td><input type='text' ng-model='recipe.inactive_time'></td>
+    </tr>
+    <tr>
+      <td>Description:</i></td>
+      <td><input type='text' ng-model='recipe.blurb' required></td>
+      <td><i class="lightbulb filter info icon" data-content="Add a short description of your recipe! e.g. 'My grandma's favorite recipe, these cookies are ooey-gooey good!'"></td>
+    </tr>
+  </table>
+</div>
+
+
+<div class="ui horizontal icon divider">
+  <i class="circular food icon"></i>
+</div>
+
+<h2 class='new-recipe-label'>STEP 2: Ingredients</h2>
 
 <div class='two column stackable ui grid'>
   <div class='column'>
     <div class='ui segment'>
-      Search for an Ingredient: <input ng-model="query">
+      Search for an Ingredient: <input ng-model="query"></input>
       <button ng-click='newIngredient()' ng-show='!creatingIngredient'>Add a new ingredient</button>
       <button ng-click='newIngredient()' ng-show='creatingIngredient'>Undo new ingredient</button>
-    </div>
 
-    <!-- Begin the new ingredient section -->
-    <div class='ui segment' ng-show='creatingIngredient'>
-      <input type='textarea' ng-model='newIngredientName' placeholder='Name your ingredient!' class='ui segment'></input> {{newIngredientName}}<br>
-      What is your ingredient made out of?: <input ng-model="componentQuery" placeholder='Search for a component'><br>
+      <!-- Begin the new ingredient section -->
+      <div ng-show='creatingIngredient'>
+        <input type='textarea' ng-model='newIngredientName' placeholder='Name your ingredient!' class='ui segment'></input> {{newIngredientName}}<br>
+        What is your ingredient made out of?: <input ng-model="componentQuery" placeholder='Search for a component'></input><br>
 
-      <!-- Begins new component section -->
-      <small>I don't see what I need! <button ng-click='newComponent()' ng-show='!creatingComponent'>Add a new component</button>
-      <button ng-click='newComponent()' ng-show='creatingComponent'>Undo new component</button></small>
+        <!-- Begins new component section -->
+        <small>I don't see what I need! <button ng-click='newComponent()' ng-show='!creatingComponent'>Add a new component</button>
+        <button ng-click='newComponent()' ng-show='creatingComponent'>Undo new component</button></small>
 
-      <form novalidate ng-show='creatingComponent'>
-        <input type='textarea' ng-model='theNewComponent'>
-        <button type='submit' ng-click='createComponent(theNewComponent)'>Create!</button>
-      </form>
+        <form novalidate ng-show='creatingComponent'>
+          <input type='textarea' ng-model='theNewComponent'></input>
+          <button type='submit' ng-click='createComponent(theNewComponent)'>Create!</button>
+        </form>
 
-      <!-- End new component section -->
+        <!-- Begin new component section -->
 
-      <div class='two column stackable ui grid'>
-        <div class='column'>
-          <ul class='ui segment'>
-            <li ng-repeat='component in components | filter: componentQuery'>
-              <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>
-              <label>{{component.name}}</label>
-            </li>
-          </ul>
-        </div>
-
-        <div class='column'>
-          <div class='ui segment'>
-            <div ng-show='newIngredients.length == 0'> Select some components to get started!</div>
-
-            <ul ng-repeat='component in newIngredients'>
-              <li>{{component.name}}</li>
+        <div class='two column stackable ui grid'>
+          <div class='column'>
+            <ul class='ui segment'>
+              <li ng-repeat='component in components | filter: componentQuery'>
+                <input type='checkbox' name='component.name' ng-click='addComponent(component)'/>
+                <label>{{component.name}}</label>
+              </li>
             </ul>
           </div>
 
-          <div class='ui segment'>
-            <button ng-click='createIngredient(newIngredients, newIngredientName)'>Create!</button>
+          <div class='column'>
+            <div class='ui segment'>
+              <div ng-show='newIngredients.length == 0'> Select some components to get started!</div>
+
+              <ul ng-repeat='component in newIngredients'>
+                <li>{{component.name}}</li>
+              </ul>
+            </div>
+
+            <div class='ui segment'>
+              <button ng-click='createIngredient(newIngredients, newIngredientName)'>Create!</button>
+            </div>
           </div>
         </div>
       </div>
-    </div>
-    <!-- end new ingredient section -->
+      <!-- end new ingredient section -->
+      <div class='ui segment'>
+        <div class='two column stackable ui grid'>
+          <ul class='column'>
+            <li ng-repeat='ingredient in ingredients1 | filter:query'>
+              <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
+              <span ng-click='show(ingredient)'>
+                <label>{{ingredient.name}}<i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i></label>
+              </span>
+            </li>
+          </ul>
+          <ul class='column'>
+            <li ng-repeat='ingredient in ingredients2 | filter:query'>
+              <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
+              <span ng-click='show(ingredient)'>
+                <label>{{ingredient.name}}<i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i> </label>
+              </span>
+            </li>
+          </ul>
 
-    <ul class='ui segment'>
-      <li class='ingredient-list' ng-repeat='ingredient in ingredients | filter:query'>
-        <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
-        <span ng-click='show(ingredient)'>
-          <label>{{ingredient.name}}<i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i></label>
-        </span>
-        <!-- this is only visible when the user clicks on the ingredient -->
-        <ul ng-repeat='component in ingredient.components'>
-          <li ng-show='ingredient.notHidden'>{{component.name}}</li>
-        </ul>
-      </li>
-    </ul>
+          <!-- this is only visible when the user clicks on the ingredient -->
+          <ul ng-repeat='component in ingredient.components'>
+            <li ng-show='ingredient.notHidden'>{{component.name}}</li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </div>
 
-  <form name='form' class='column' novalidate>
-    <div class='ui segment'>
+  <div class='column'>
+    <form name='form' novalidate class='ui segment'>
       <h3>Ingredients</h3>
 
       <!-- This text is only visible when there are no ingredients selected -->
@@ -75,15 +130,11 @@
       <ul ng-repeat='ingredient in recipeIngredients'>
         <li><input type='number' ng-model='ingredient.quantity' placeholder='amount'> <input type='text' ng-model='ingredient.unit' placeholder='units'> {{ingredient.name}}</li>
       </ul>
-    </div>
+    </form>
+  </div>
+</div>
 
-    <div class='ui segment'>
-      <h3>Details</h3>
-      Name: <input type='textarea' ng-model='recipe.name' required><br>
-      Prep time (in minutes): <input type='number' ng-model='recipe.prep_time'><br>
-      Inactive time (in minutes): <input type='number' ng-model='recipe.inactive_time'><br>
-      Blurb: <input type='textarea' ng-model='recipe.blurb' placeholder="Add a short description of your recipe! e.g. 'My grandma's favorite recipe, these cookies are ooey-gooey good!'" required>
-    </div>
+<h2 class='new-recipe-label'>STEP 3: Directions</h2>
 
     <div class='ui segment'>
       <h3>Steps</h3>

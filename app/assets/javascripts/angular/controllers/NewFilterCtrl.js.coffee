@@ -17,14 +17,14 @@
         r1 = -1 + divisor
         r2 = -1 + divisor
       else if remainder is 1
-        r1 = 0 + divisor
+        r1 = divisor
         r2 = -1 + divisor
       else
         r1 = divisor
         r2 = divisor
-      $scope.components1 = components.slice(0, r1)
-      $scope.components2 = components.slice(r1 + 1, r1 + r2 + 1)
-      $scope.components3 = components.slice(r1 + r2 + 2, -1)
+      $scope.components1 = components.slice(0, r1 + 1)
+      $scope.components2 = components.slice(r1 + 1, r1 + r2 + 2)
+      $scope.components3 = components.slice(r1 + r2 + 2, components.length)
 
     # adds components to the new filter
     $scope.addComponent = (component) ->
