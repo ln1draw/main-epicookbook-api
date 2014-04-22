@@ -1,12 +1,6 @@
 'use strict'
 
-@epicookbook = angular.module('epicookbook', [
-  'ngRoute',
-  'UserApp',
-  'restangular',
-  ])
-
-epicookbook.config([
+@epicookbook.config([
   "$routeProvider",
   "$locationProvider",
   ($routeProvider, $locationProvider) ->
