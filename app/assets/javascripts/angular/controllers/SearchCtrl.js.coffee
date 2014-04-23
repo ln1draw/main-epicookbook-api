@@ -18,4 +18,6 @@
       getRecipes = Restangular.all('api/search/' + $scope.filters + '.json')
       getRecipes.getList().then (someRecipes) ->
         $scope.recipes = someRecipes
+    $scope.show = (id) ->
+      window.location = "#/recipe/" + id
 ]

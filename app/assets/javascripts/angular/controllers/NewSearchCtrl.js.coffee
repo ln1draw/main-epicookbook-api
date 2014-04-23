@@ -7,6 +7,7 @@
     $scope.recipeQuery = $routeParams.recipeQuery
     $scope.auser = $scope.user_id
     $scope.recipeQuery = $routeParams.recipeQuery
+    $scope.displayFilter = false
 
     # the actual method that moves you to the search page (executes on click)
     $scope.search = (recipeQuery, selectedFilters) ->     
@@ -17,8 +18,12 @@
         newLocation = "#/search/" + recipeQuery
       window.location = newLocation
 
+    $scope.hideFilter = ->
+      console.log 'wooo'
+
     # method that runs to get a user's ids when you click on 'add a filter'
     $scope.getFilters = (uid) ->
+      $scope.displayFilter = true
       getFilters = Restangular.all('api/users/' + uid + '/nolists.json')
       getFilters.getList().then (someFilters) ->
         $scope.filters = someFilters
@@ -42,5 +47,12 @@
     $scope.reloadRoute = ->
       $route.reloadRoute
 
+    $scope.hideFilter = ->
+      console.log 'hit it'
+      $scope.displayFilter = false
+
     $(".ui.dropdown").dropdown()
+    # settings for the semantic ui module
+    $(".add-filter").popup on: "click"
+
 ]

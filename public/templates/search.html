@@ -1,3 +1,10 @@
-<ul ng-repeat='recipe in recipes | filter: recipeQuery'>
-  <li>{{recipe.name}}</li>
-</ul>
+<div>
+  <ul class='recipe-list'>
+    <li ng-repeat='recipe in recipes | filter:query' class='index-recipe-item'>
+      <div class='ui segment' ng-click='show(recipe.id)'>
+        <h2>{{recipe.name}}</h2><br>
+        {{recipe.blurb}}
+      </div>
+    </li>
+  </ul>
+</div>
