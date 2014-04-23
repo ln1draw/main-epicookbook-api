@@ -37,8 +37,8 @@
         r1 = divisor + 1
       else
         r1 = divisor + 2
-      $scope.ingredients1 = ingredients.slice(0, r1)
-      $scope.ingredients2 = ingredients.slice(r1, ingredients.length)
+      $scope.ingredients1 = ingredients.slice(0, r1 + 1)
+      $scope.ingredients2 = ingredients.slice(r1 + 1, ingredients.length)
 
     # This toggles view of the components of a particular ingredient
     $scope.show = (ingredient) ->
