@@ -85,19 +85,22 @@
 
     .when("/logout",
       templateUrl: "/templates/user/logout.html"
+      public: true
     )
 
     .when("/product-plan",
       templateUrl: "/templates/product-plan.html"
+      public: true
     )
 
-    .when('/',
+    .when('/#/',
       templateUrl: "/templates/home.html"
       public: true
     )
 
     .otherwise(
-      redirectTo: '/'
+      redirectTo: '/#/'
+      public: true
     )
 ])
 
