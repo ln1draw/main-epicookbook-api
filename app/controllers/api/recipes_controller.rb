@@ -35,7 +35,9 @@ class Api::RecipesController < ApplicationController
   def ingredients
     id = params[:id].to_i
     @recipe_ingredients = RecipeIngredient.where(recipe_id: id)
-    component_ids = Recipe.get_ingredients_and_component_ids(@recipe_ingredients)
+    array = Recipe.get_ingredients_and_component_ids(@recipe_ingredients)
+    component_ids = array[0]
+    @ingredients = array[1]
     @components = []
     component_ids.each do |component_id|
       component = HTTParty.get( APIurl + 'components/' + component_id.to_s + '.json')

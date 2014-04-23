@@ -28,7 +28,7 @@ class Api::RecipeIngredientsController < ApplicationController
         recipe_id: params[:recipe_id]
       )
     end
-    component_ids = Recipe.get_ingredients_and_component_ids(@recipe_ingredients)
+    component_ids = Recipe.get_ingredients_and_component_ids(@recipe_ingredients)[0]
     Recipe.update(params[:recipe_id].to_i, component_ids: component_ids.join(','))
   end
 

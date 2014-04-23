@@ -16,6 +16,6 @@ class Recipe < ActiveRecord::Base
       end
     end
     component_ids.uniq!
-    return component_ids
+    return [component_ids, ingredients]
   end
 end

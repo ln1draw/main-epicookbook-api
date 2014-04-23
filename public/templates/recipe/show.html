@@ -7,14 +7,16 @@
       Prep time: {{recipe.prep_time}} minutes<br>
       Inactive time: {{recipe.inactive_time}} minutes
     </div>
-
     <h3>Ingredients</h3>
     <ul ng-repeat='ingredient in ingredients'>
       <li ng-click='show(ingredient)'>{{ingredientStats(ingredient)}} {{ingredient.ingredient.name}} <i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i></li>
       <!-- this is only visible when you click on the ingredient -->
-      <ul ng-repeat='component in ingredientComponents(ingredient)'>
-        <li ng-show='ingredient.notHidden'>{{component}}</li>
-      </ul>
+      <div ng-show='ingredient.notHidden'>
+        {{ingredient.ingredient.name}} is made out of:
+        <ul ng-repeat='component in ingredientComponents(ingredient)'>
+          <li>{{component}}</li>
+        </ul>
+      </div>
     </ul>
 
     <h3>Directions:</h3>
