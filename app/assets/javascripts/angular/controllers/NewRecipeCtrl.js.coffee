@@ -144,4 +144,5 @@
 
     # settings for the semantic ui module
     $(".filter.info").popup on: "click"
+    $(".attention.icon").popup on: "click"
 ]

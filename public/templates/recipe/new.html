@@ -46,8 +46,8 @@
 <div class='two column stackable ui grid'>
   <div class='column'>
     <div class='ui segment'>
-      Search for an Ingredient: <input ng-model="query"></input><i class="small info filter icon" data-html="<h4>Why do I have to pick from a list?</h4><div>Here at Epicookbook, we put a lot of value in keeping our information reliable. We think that you should know what goes into your food. We use this controlled ingredient list to help keep our information consistent and reliable, so you can eat without worrying about anything but how it tastes.</div>"></i>
-      <button ng-click='newIngredient()' ng-show='!creatingIngredient'>Add a new ingredient</button>
+      Search for an Ingredient: <input ng-model="query"></input><i class="small info filter icon" data-html="<h4>Why do I have to pick from a list?</h4><div>Here at Epicookbook, we put a lot of value in keeping our information reliable. We think that you should know what goes into your food. We use this controlled ingredient list to help keep our information consistent and reliable, so you can eat without worrying about anything but how it tastes.</div>"></i><br>
+      <button ng-click='newIngredient()' ng-show='!creatingIngredient'>Add a new ingredient</button><i class="small attention icon" data-html="<div>Please only create an ingredient when you absolutely cannot find the ingredient you are looking for!</div>"></i>
       <button ng-click='newIngredient()' ng-show='creatingIngredient'>Hide new ingredient form</button>
 
       <!-- Begin the new ingredient section -->
@@ -56,7 +56,7 @@
         What is your ingredient made out of?: <input ng-model="componentQuery" placeholder='Search components'></input><i class="small info filter icon" data-html="<h4>What is a component?</h4><div>Components are the basic pieces ingredients are made out of. They're how we determine whether an ingredient is allergy-friendly, vegetarian, etc.</div><br><div>For example, brown sugar (the ingredient) is made out of sugar and molasses (the components)</div>"></i><br><br>
 
         <!-- Begins new component section -->
-        <small ng-show='!creatingComponent'>I don't see what I need! <button ng-click='newComponent()' ng-show='!creatingComponent'>Add a new component</button><br>
+        <small ng-show='!creatingComponent'>I don't see what I need! <button ng-click='newComponent()' ng-show='!creatingComponent'>Add a new component</button><i class="small attention icon" data-html="<div>Please only create a component when you absolutely cannot find the component you are looking for!</div>"></i><br>
         <button ng-click='newComponent()' ng-show='creatingComponent'>Hide new component form</button></small>
 
         <form novalidate ng-show='creatingComponent'>
@@ -92,6 +92,7 @@
         </div>
       </div>
       <!-- end new ingredient section -->
+
       <div class='ui segment'>
         <div class='two column stackable ui grid'>
           <ul class='column'>
@@ -99,6 +100,11 @@
               <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
               <span ng-click='show(ingredient)'>
                 <label>{{ingredient.name}}<i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i></label>
+                <ul ng-show='ingredient.notHidden'>
+                  <li ng-repeat='component in ingredient.components'>
+                    {{component.name}}
+                  </li>
+                </ul>
               </span>
             </li>
           </ul>
@@ -107,6 +113,11 @@
               <input type='checkbox' name='ingredient.name' ng-click='addIngredient(ingredient)'/>
               <span ng-click='show(ingredient)'>
                 <label>{{ingredient.name}}<i class="expand icon" ng-show='!ingredient.notHidden'></i><i class="collapse icon" ng-show='ingredient.notHidden'></i> </label>
+                <ul ng-show='ingredient.notHidden'>
+                  <li ng-repeat='component in ingredient.components'>
+                    {{component.name}}
+                  </li>
+                </ul>
               </span>
             </li>
           </ul>
