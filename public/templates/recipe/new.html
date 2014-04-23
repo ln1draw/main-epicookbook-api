@@ -156,7 +156,7 @@
     <!-- writing new steps -->
     <div class='ui form segment'>
       <input type='text' placeholder='Add a step!' ng-model='step.content' value='step'/>
-      <button ng-show='step.content.length > 0'><i class='add icon' ng-click='addStep(step)'></i>Add a step!</button>
+      <button ng-show='step.content.length > 0' ng-click='addStep(step)'><i class='add icon'></i>Add a step!</button>
     </div>
   </div>
 

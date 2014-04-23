@@ -85,6 +85,10 @@ ul li{
   width: 100%;
 }
 
+.validations{
+  color: red;
+}
+
 /* show recipe */
 .recipe-show h2{
   margin: auto;
