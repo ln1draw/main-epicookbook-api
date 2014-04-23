@@ -70,8 +70,10 @@
     # makes the new ingredient form available
     $scope.newIngredient = ->
       if $scope.creatingIngredient
+        $scope.ingredientStyle = ""
         $scope.creatingIngredient = false
       else
+        $scope.ingredientStyle = {opacity:.25}
         $scope.creatingIngredient = true
 
     # adds components to the new ingredient
@@ -99,8 +101,10 @@
     # makes the new component form available
     $scope.newComponent = ->
       if $scope.creatingComponent
+        $scope.newIngredientStyle = ''
         $scope.creatingComponent = false
       else
+        $scope.newIngredientStyle = {opacity:.25}
         $scope.creatingComponent = true
 
 
