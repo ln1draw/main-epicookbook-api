@@ -16,6 +16,7 @@
 //= require angular-animate
 //= require lodash
 //= require epicookbook
+//= require semantic-ui
 //= require_tree ./angular/controllers
 //= require main
 //= require_tree .
