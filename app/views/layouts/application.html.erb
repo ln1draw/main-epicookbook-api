@@ -67,7 +67,10 @@
             <button ng-click='search(recipeQuery, selectedFilters)'>Search</button>
           </div>
           <div class='item'>
-            <button ng-click='getFilters(user.user_id)' ng-show='user.authenticated'>Add a filter</button>
+            <button ng-click='getFilters(user.user_id)' ng-show='user.authenticated && !displayFilter' class='ui dropdown'>Add a filter</button>
+            <ul class='menu' id='filters'>
+              <li ng-repeat='filter in filters' class='item'><input type='checkbox' name='filter.id' ng-click='addFilter(filter)'> {{filter.name}}</li>
+            </ul>
             <span ng-show='!user.authenticated'><a href='#/login'>Log in</a> to filter by dietary restrictions</span>
           </div>
         </div>
@@ -86,7 +89,7 @@
               <a class='item' ng-show="user.authenticated" href='#/filter/new'>new filter</a>
               <a class='item' ng-show='user.authenticated' href='#/recipe/new'>new recipe</a>
               <a class='item' href='#/recipes'>all recipes</a>
-              <div class='item ui dropdown' ng-click='getFilters(user.user_id)' ng-show='user.authenticated'>add a filter</div>
+              <div class='item ui dropdown' nng-click='getFilters(user.user_id)' ng-show='user.authenticated && !displayFilter'>add a filter</div>
               <ul class='menu' id='filters'>
                 <li ng-repeat='filter in filters' class='item'><input type='checkbox' name='filter.id' ng-click='addFilter(filter)'> {{filter.name}}</li>
               </ul>
