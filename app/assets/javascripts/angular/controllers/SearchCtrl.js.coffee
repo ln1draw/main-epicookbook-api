@@ -6,7 +6,7 @@
   'UserApp',
   ($scope, Restangular, $routeParams, $location, UserApp) ->
     $scope.recipeQuery = $routeParams.recipeQuery
-    $scope.recipeQuery = $routeParams.recipeQuery
+    $scope.query = $routeParams.recipeQuery
     $scope.filters = $routeParams.filters
 
     # this gets all of the recipes that are not filtered out and saves them to the scope
